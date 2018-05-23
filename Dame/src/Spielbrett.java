@@ -2,6 +2,6 @@
 public class Spielbrett {
 
 	public static void main(String[] args) {
-	      System.out.println("Hi");
+	      System.out.println("Hier soll mal ein Dame-Spiel entstehen!?");
 	   }
 }
