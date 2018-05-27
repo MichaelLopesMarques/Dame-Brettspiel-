@@ -4,17 +4,16 @@ import javax.swing.JPanel;
 import javax.swing.*;
 
 public class Spielbrett extends JFrame {
-	
     
-    public static void main(String[] args) {
-    	
-        Spielbrett frame = new Spielbrett("Dame");
-        frame.setTitle("Dame");
+    public Spielbrett() {
+    	super();
+    	//pack();
+    	JFrame frame = new JFrame ("Dame");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(800,800);
+        frame.setResizable(false);
         frame.setVisible(true);
-    }
-    public Spielbrett(String title) {
-    	super(title);
+        
+        Welt welt = new Welt();
     }
 }
