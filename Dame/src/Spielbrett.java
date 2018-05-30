@@ -8,33 +8,38 @@ public class Spielbrett extends JFrame {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	public JButton single;
+	private JButton single;
 	private JButton multi;
 	private JButton tut;
 	private JButton end;
+	private JFrame frame;
 	
     public Spielbrett() {
     	super();
     	//pack();
-    	JFrame frame = new JFrame ("Dame");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(1280,720);
-        frame.setResizable(false);
-        frame.setVisible(true);
+    	
+    	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    	this.setSize(1280,720);
+    	
         
         Welt welt = new Welt();
         
         
         single = new JButton("Singleplayer");
         single.setBounds(80,20,600,100);
-        add(single);
+        this.add(single);
         
+        menu();
+        
+    	this.setResizable(false);
+    	this.setVisible(true);
     }
     public void menu() {
     	JMenuBar bar = new JMenuBar();
     	JMenu menu = new JMenu("Datei");
     	
     	bar.add(menu);
+    	this.add(bar);
     	setJMenuBar(bar);
     }
 }
