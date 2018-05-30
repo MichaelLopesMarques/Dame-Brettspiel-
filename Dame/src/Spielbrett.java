@@ -1,17 +1,20 @@
 import javax.swing.JFrame;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+
 import javax.swing.*;
 
-public class Spielbrett extends JFrame {
+public class Spielbrett extends JFrame implements MouseListener, ActionListener{
     
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JButton single;
-	private JButton multi;
-	private JButton tut;
-	private JButton end;
+	private JButton single, multi, tut, end;
 	private JFrame frame;
 	
     public Spielbrett() {
@@ -19,7 +22,7 @@ public class Spielbrett extends JFrame {
     	//pack();
     	
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	this.setSize(1280,720);
+    	this.setSize(1200,900);
     	
         
         Welt welt = new Welt();
@@ -43,6 +46,12 @@ public class Spielbrett extends JFrame {
         
         menu();
         
+        single.addActionListener(this);
+        multi.addActionListener(this);
+        tut.addActionListener(this);
+        end.addActionListener(this);
+        
+        
     	this.setResizable(false);
     	this.setVisible(true);
     }
@@ -54,4 +63,37 @@ public class Spielbrett extends JFrame {
     	this.add(bar);
     	setJMenuBar(bar);
     }
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		
+		if(source.equals(end)) {
+			System.exit(0);
+		}
+	}
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
 }
