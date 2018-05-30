@@ -26,8 +26,20 @@ public class Spielbrett extends JFrame {
         
         
         single = new JButton("Singleplayer");
-        single.setBounds(80,20,600,100);
+        single.setBounds(520,100,240,50);
         this.add(single);
+        
+        multi = new JButton("Multiplayer");
+        multi.setBounds(520,200,240,50);
+        this.add(multi);
+
+        tut = new JButton("Tutorial");
+        tut.setBounds(520,300,240,50);
+        this.add(tut);
+        
+        end = new JButton("Beenden");
+        end.setBounds(520,400,240,50);
+        this.add(end);
         
         menu();
         
