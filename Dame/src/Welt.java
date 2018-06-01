@@ -1,4 +1,4 @@
-
+import java.awt.Color;
 public class Welt {
 	
 	private static int laengeF=8;
@@ -10,11 +10,12 @@ public class Welt {
 	public Welt() {
 		int z=0;
     
-		feld = new Feld[8][8];
-		for (int x=0;x<8;x++) {
-			for (int y=0;y<8;y++) {
+		feld = new Feld[laengeF][breiteF];
+		for (int x=0;x<laengeF;x++) {
+			for (int y=0;y<breiteF;y++) {
 				gerade=x+y;
 				if (gerade%2==0) {
+					feld[x][y]=new Feld();
 					System.out.print(1);
 					z++;
 					if (z>7) {

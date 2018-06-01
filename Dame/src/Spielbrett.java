@@ -14,8 +14,9 @@ public class Spielbrett extends JFrame implements MouseListener, ActionListener{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private JButton single, multi, tut, end;
+	private JButton single, multi, tut, end;	//Initalisierung der JButton & JFrames
 	private JFrame frame;
+	//Welt welt = new Welt();
 	
     public Spielbrett() {
     	super();
@@ -23,14 +24,10 @@ public class Spielbrett extends JFrame implements MouseListener, ActionListener{
     	
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(1200,900);
-    	
         
-        Welt welt = new Welt();
-        
-        
-        single = new JButton("Singleplayer");
-        single.setBounds(520,100,240,50);
-        this.add(single);
+        single = new JButton("Singleplayer");	//Name des neuen Buttons + Beschreibung 
+        single.setBounds(520,100,240,50);		//Position + Größe des Buttons 
+        this.add(single);						//Button wird hinzugefügt
         
         multi = new JButton("Multiplayer");
         multi.setBounds(520,200,240,50);
@@ -44,31 +41,42 @@ public class Spielbrett extends JFrame implements MouseListener, ActionListener{
         end.setBounds(520,400,240,50);
         this.add(end);
         
-        menu();
+        menu();									//Methode Menu wird aufgerufen
         
-        single.addActionListener(this);
+        single.addActionListener(this);			//Buttons wird der Actionlistner hinzugefügt
         multi.addActionListener(this);
         tut.addActionListener(this);
         end.addActionListener(this);
         
         
-    	this.setResizable(false);
-    	this.setVisible(true);
+    	this.setResizable(false);				//Änderung der Größe des Fensters wird deaktivert
+    	this.setVisible(true);					//Fenster wird sichtbar gemacht
     }
+    
     public void menu() {
-    	JMenuBar bar = new JMenuBar();
-    	JMenu menu = new JMenu("Datei");
+    	JMenuBar bar = new JMenuBar();			//Menübar wird erzeugt
+    	JMenu menu = new JMenu("Datei");		//Menuspalte wird erzeugt und Datei genannt
     	
-    	bar.add(menu);
-    	this.add(bar);
-    	setJMenuBar(bar);
+    	bar.add(menu);							//Menüspalten werden der Menüzeile hinzugefügt
+    	this.add(bar);							//???
+    	setJMenuBar(bar);						//Menü wird gesetzt
     }
+    
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		
+		if(source.equals(single)) {			//wenn man den Button drückt
+			Welt welt = new Welt();			//Objekt Welt wird erzeugt
+		}
+		if(source.equals(multi)) {
+			Welt welt = new Welt();
+		}
+		if(source.equals(tut)) {
+			
+		}
 		if(source.equals(end)) {
-			System.exit(0);
+			System.exit(0);					//Programm wird beendet
 		}
 	}
 	@Override
