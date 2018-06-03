@@ -21,7 +21,7 @@ public class Spielbrett extends JFrame implements MouseListener, ActionListener{
     public Spielbrett() {
     	super();
     	//pack();
-    	
+    	this.setTitle("Dame");
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(1200,900);
         
@@ -73,7 +73,7 @@ public class Spielbrett extends JFrame implements MouseListener, ActionListener{
 			Welt welt = new Welt();
 		}
 		if(source.equals(tut)) {
-			
+			Tutorial tutorial = new Tutorial();
 		}
 		if(source.equals(end)) {
 			System.exit(0);					//Programm wird beendet
