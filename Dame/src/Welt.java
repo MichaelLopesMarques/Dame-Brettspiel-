@@ -23,7 +23,13 @@ public class Welt {
 						z=0;
 					}
 				}else {
-					System.out.print(0);
+					if(x<=2) {
+						System.out.print(2);
+					}else if (x>=5) {
+						System.out.print(3);
+					}else {
+						System.out.print(0);
+					}
 					z++;
 					if (z>7) {
 						System.out.println();
