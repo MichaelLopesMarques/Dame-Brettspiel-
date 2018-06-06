@@ -1,4 +1,6 @@
 import java.awt.Color;
+import java.awt.image.BufferedImage;
+
 public class Welt {
 	
 	private static int laengeF=8;
@@ -6,6 +8,8 @@ public class Welt {
 	private int gerade=0;
 	
 	private Feld[][] feld;
+	
+	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder\\Download.png"), 80, 80);
 
 	public Welt() {
 		int z=0;
