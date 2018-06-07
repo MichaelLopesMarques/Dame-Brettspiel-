@@ -13,8 +13,8 @@ public class Welt extends JFrame {
 	private static int laengeFeld=8;
 	private static int breiteFeld=8;
 	
-	private static int weiteFenster = 800;
-	private static int hoeheFenster = 800;
+	private static int weiteFenster = 1000;
+	private static int hoeheFenster = 1000;
 	
 	private int gerade=0;
 	
@@ -24,6 +24,9 @@ public class Welt extends JFrame {
 	
 	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
 	private BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
+	
+	private BufferedImage weissstein = Bilder.Anpassung(Bilder.labeBild("bilder/weissstein.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private BufferedImage schwarzstein = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzstein.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
 	public Welt() {
 		super("Dame");
@@ -59,7 +62,7 @@ public class Welt extends JFrame {
 		feld = new Feld[laengeFeld][breiteFeld];
 		for (int x=0;x<laengeFeld;x++) {
 			for (int y=0;y<breiteFeld;y++) {
-				feld[x][y]=new Feld(x,y,weiss,schwarz);
+				feld[x][y]=new Feld(x,y,weiss,schwarz,weissstein,schwarzstein);
 				gerade=x+y;
 				if (gerade%2==0) {
 					feld[x][y].setWeiss(weiss);
@@ -70,12 +73,14 @@ public class Welt extends JFrame {
 						z=0;
 					}
 				}else {
-					if(x<=2) {
-						feld[x][y].setSchwarz(schwarz);
+					if(y<=2) {
+						feld[x][y].setSchwarzstein(schwarzstein);
 						System.out.print(2);
-					}else if (x>=5) {
+					}else if (y>=5) {
 						System.out.print(3);
+						feld[x][y].setWeissstein(weissstein);
 					}else {
+						feld[x][y].setSchwarz(schwarz);
 						System.out.print(0);
 					}
 					z++;
