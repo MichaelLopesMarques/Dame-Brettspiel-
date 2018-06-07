@@ -7,7 +7,7 @@ import java.awt.event.MouseListener;
 
 import javax.swing.*;
 
-public class Spielbrett extends JFrame implements MouseListener, ActionListener{
+public class Start extends JFrame implements MouseListener, ActionListener{
     
 	/**
 	 * 
@@ -15,10 +15,9 @@ public class Spielbrett extends JFrame implements MouseListener, ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton single, multi, tut, end;	//Initalisierung der JButton & JFrames
-	private JFrame frame;
-	//Welt welt = new Welt();
+
 	
-    public Spielbrett() {
+    public Start() {
     	super();
     	//pack();
     	this.setTitle("Dame");
@@ -67,6 +66,7 @@ public class Spielbrett extends JFrame implements MouseListener, ActionListener{
 		Object source = e.getSource();
 		
 		if(source.equals(single)) {			//wenn man den Button drückt
+			setVisible(false);
 			Welt welt = new Welt();			//Objekt Welt wird erzeugt
 		}
 		if(source.equals(multi)) {
