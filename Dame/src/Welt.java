@@ -4,28 +4,44 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JPanel;
 
 import java.awt.image.BufferedImage;
 
 public class Welt extends JFrame {
 	
-	private static int laengeF=8;
-	private static int breiteF=8;
+	private static int laengeFeld=8;
+	private static int breiteFeld=8;
+	
+	private static int weiteFenster = 800;
+	private static int hoeheFenster = 800;
+	
 	private int gerade=0;
 	
 	private Feld[][] feld;
 	
-	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder\\Download.png"), 80, 80);
+	private Screen screen;
+	
+	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
 	public Welt() {
-		super();
-    	//pack();
-    	this.setTitle("Dame");
+		super("Dame");
+    	this.pack();
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	this.setSize(1200,900);
+    	this.setSize(weiteFenster,hoeheFenster);
     	menu();
+    		
+    	
     	this.setResizable(false);				//Änderung der Größe des Fensters wird deaktivert
     	this.setVisible(true);					//Fenster wird sichtbar gemacht
+    	
+    	screen=new Screen();																			//neues Objekt der Klasse Screen
+		add(screen);
+    	
+    	brett();
+    	
+    	screen.repaint();
 	}
 	
     public void menu() {
@@ -37,17 +53,17 @@ public class Welt extends JFrame {
     	setJMenuBar(bar);						//Menü wird gesetzt
     }
     
-	public void Brett(Graphics g) {
+	public void brett() {
 		int z=0;
     
-		feld = new Feld[laengeF][breiteF];
-		for (int x=0;x<laengeF;x++) {
-			for (int y=0;y<breiteF;y++) {
+		feld = new Feld[laengeFeld][breiteFeld];
+		for (int x=0;x<laengeFeld;x++) {
+			for (int y=0;y<breiteFeld;y++) {
+				feld[x][y]=new Feld(x,y,weiss,schwarz);
 				gerade=x+y;
 				if (gerade%2==0) {
-					feld[x][y]=new Feld();
+					feld[x][y].setWeiss(weiss);
 					System.out.print(1);
-					g.drawImage(weiss,80,80,this);
 					z++;
 					if (z>7) {
 						System.out.println();
@@ -55,6 +71,7 @@ public class Welt extends JFrame {
 					}
 				}else {
 					if(x<=2) {
+						feld[x][y].setSchwarz(schwarz);
 						System.out.print(2);
 					}else if (x>=5) {
 						System.out.print(3);
@@ -69,5 +86,28 @@ public class Welt extends JFrame {
 				}
 			}
 		}
+		
+	}
+	
+	public class Screen extends JPanel{					//Unterklasse von JFrame (JPanel)
+		private static final long serialVersionUID = 1L;
+
+		@Override
+		public void paintComponent(Graphics g) {		//Überschreiben der Methode paintComponet in JPanel
+			try {										//was Hochriskantes passiert hier mal wieder (huhu riskant!)
+				draw(g); 		//wird das Feld gezeichnet						//die welt wird gezeichnet
+			} catch (NullPointerException e) {			//fängt eine NullPointerException ab, weil die warum auch immer kommt
+							
+			}
+		}
+	}
+	
+	public void draw(Graphics g) {			//hier wird fett gezeichnet
+		for (int x=0;x<laengeFeld;x++) {		//Schleifen damit dann trotzdem eine NullPointException auftritt und es dann funkt
+			for (int y=0;y<breiteFeld;y++) {
+				feld[x][y].draw(g); 		//wird das Feld gezeichnet
+			}
+		}
+		
 	}
 }
