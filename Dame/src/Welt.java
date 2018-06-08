@@ -1,6 +1,9 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
 import javax.swing.JMenu;
@@ -10,7 +13,7 @@ import javax.swing.JPanel;
 
 import java.awt.image.BufferedImage;
 
-public class Welt extends JFrame {
+public class Welt extends JFrame implements MouseListener, ActionListener{
 	
 	private static int laengeFeld=8;
 	private static int breiteFeld=8;
@@ -23,6 +26,8 @@ public class Welt extends JFrame {
 	private Feld[][] feld;
 	
 	private Screen screen;
+	
+	static JMenuItem dateiNew, dateiEnd;
 	
 	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
 	private BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
@@ -52,24 +57,28 @@ public class Welt extends JFrame {
 	
     public void menu() {
     	JMenuBar bar = new JMenuBar();			//Menübar wird erzeugt
+    	
     	JMenu datei = new JMenu("Datei");		//Menuspalte wird erzeugt und Datei genannt
     	JMenu high = new JMenu("Highscore");	//Menuspalte wird erzeugt und Highscore genannt
     	JMenu opt = new JMenu("Optionen");		//Menuspalte wird erzeugt und Optionen genannt
-    	JMenu hel = new JMenu("Hilfe");			//Menuspalte wird erzeugt und Hilfe genannt
-    	JMenuItem datuntn = new JMenuItem("Neues Spiel");	
-    	JMenuItem datunbe = new JMenuItem("Beenden");
+    	JMenu help = new JMenu("Hilfe");			//Menuspalte wird erzeugt und Hilfe genannt
     	
+    	JMenuItem dateiNew = new JMenuItem("Neues Spiel");	
+    	JMenuItem dateiEnd = new JMenuItem("Beenden");
     	
     	bar.add(datei);							//Menüspalten werden der Menüzeile hinzugefügt
     	bar.add(high);								
     	bar.add(opt);
-    	bar.add(hel);
+    	bar.add(help);
     	
-    	datei.add(datuntn);
-    	datei.add(datunbe);
+    	datei.add(dateiNew);
+    	datei.add(dateiEnd);
     	
-    	this.add(bar);							//???
+    	dateiEnd.addActionListener(this);			//Menüpunkt wird der Actionlistner hinzugefügt   
+    	
     	setJMenuBar(bar);						//Menü wird gesetzt
+    	
+
     }
     
 	public void brett() {
@@ -125,6 +134,49 @@ public class Welt extends JFrame {
 			for (int y=0;y<breiteFeld;y++) {
 				feld[x][y].draw(g); 		//wird das Feld gezeichnet
 			}
+		}
+		
+	}
+
+	@Override
+	public void mouseClicked(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		if(source.equals(dateiEnd)) {			
+			System.exit(0);						//Programm wird beendet
+		}
+		if(source.equals(dateiNew)) {			
+			brett();							//Das Spielbrett wird neu gezeichnet
+			screen.repaint();
 		}
 		
 	}

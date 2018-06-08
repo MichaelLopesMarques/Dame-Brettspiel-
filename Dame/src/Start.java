@@ -61,6 +61,7 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 			Welt welt = new Welt();				//Objekt Welt wird erzeugt
 		}
 		if(source.equals(multi)) {
+			setVisible(false);
 			Welt welt = new Welt();
 		}
 		if(source.equals(tut)) {
