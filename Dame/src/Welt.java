@@ -99,11 +99,7 @@ public class Welt extends JFrame {
 
 		@Override
 		public void paintComponent(Graphics g) {		//Überschreiben der Methode paintComponet in JPanel
-			try {										//was Hochriskantes passiert hier mal wieder (huhu riskant!)
-				draw(g); 		//wird das Feld gezeichnet						//die welt wird gezeichnet
-			} catch (NullPointerException e) {			//fängt eine NullPointerException ab, weil die warum auch immer kommt
-							
-			}
+			draw(g); 		//wird das Feld gezeichnet						//die welt wird gezeichnet
 		}
 	}
 	
