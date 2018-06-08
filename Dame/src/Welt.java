@@ -4,6 +4,7 @@ import java.awt.Graphics;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 
 import java.awt.image.BufferedImage;
@@ -54,13 +55,18 @@ public class Welt extends JFrame {
     	JMenu high = new JMenu("Highscore");	//Menuspalte wird erzeugt und Highscore genannt
     	JMenu opt = new JMenu("Optionen");		//Menuspalte wird erzeugt und Optionen genannt
     	JMenu hel = new JMenu("Hilfe");			//Menuspalte wird erzeugt und Hilfe genannt
-    	
+    	JMenuItem datuntn = new JMenuItem("Neues Spiel");	
+    	JMenuItem datunbe = new JMenuItem("Beenden");
     	
     	
     	bar.add(datei);							//Menüspalten werden der Menüzeile hinzugefügt
     	bar.add(high);								
     	bar.add(opt);
     	bar.add(hel);
+    	
+    	datei.add(datuntn);
+    	datei.add(datunbe);
+    	
     	this.add(bar);							//???
     	setJMenuBar(bar);						//Menü wird gesetzt
     }
