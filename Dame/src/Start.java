@@ -9,9 +9,7 @@ import javax.swing.*;
 
 public class Start extends JFrame implements MouseListener, ActionListener{
     
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 	
 	private JButton single, multi, tut, end;	//Initalisierung der JButton & JFrames
@@ -28,15 +26,15 @@ public class Start extends JFrame implements MouseListener, ActionListener{
         this.add(single);						//Button wird hinzugefügt
         
         multi = new JButton("Multiplayer");
-        multi.setBounds(120,40,160,40);
+        multi.setBounds(120,110,160,40);
         this.add(multi);
 
         tut = new JButton("Tutorial");
-        tut.setBounds(120,40,160,40);
+        tut.setBounds(120,180,160,40);
         this.add(tut);
         
         end = new JButton("Beenden");
-        end.setBounds(120,40,160,40);
+        end.setBounds(120,250,160,40);
         this.add(end); 
         
 
