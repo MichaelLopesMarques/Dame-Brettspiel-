@@ -58,9 +58,9 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		
-		if(source.equals(single)) {			//wenn man den Button drückt
+		if(source.equals(single)) {				//wenn man den Button drückt
 			setVisible(false);
-			Welt welt = new Welt();			//Objekt Welt wird erzeugt
+			Welt welt = new Welt();				//Objekt Welt wird erzeugt
 		}
 		if(source.equals(multi)) {
 			Welt welt = new Welt();
@@ -69,7 +69,7 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 			Tutorial tutorial = new Tutorial();
 		}
 		if(source.equals(end)) {
-			System.exit(0);					//Programm wird beendet
+			System.exit(0);						//Programm wird beendet
 		}
 	}
 	@Override

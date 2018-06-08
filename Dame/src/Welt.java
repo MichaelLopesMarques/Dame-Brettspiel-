@@ -33,7 +33,7 @@ public class Welt extends JFrame {
     	this.pack();
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(weiteFenster,hoeheFenster);
-    	setLocationRelativeTo(null);							//setzt das Fenster in die mitte
+    	setLocationRelativeTo(null);						//setzt das Fenster in die mitte
     	menu();
     		
     	
