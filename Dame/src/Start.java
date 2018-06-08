@@ -18,48 +18,41 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 
 	
     public Start() {
-    	super();
-    	//pack();
+    	super();								//pack();
     	this.setTitle("Dame");
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	this.setSize(1200,900);
+    	this.setSize(400,400);
         
         single = new JButton("Singleplayer");	//Name des neuen Buttons + Beschreibung 
-        single.setBounds(520,100,240,50);		//Position + Größe des Buttons 
+        single.setBounds(120,40,160,40);		//Position + Größe des Buttons 
         this.add(single);						//Button wird hinzugefügt
         
         multi = new JButton("Multiplayer");
-        multi.setBounds(520,200,240,50);
+        multi.setBounds(120,40,160,40);
         this.add(multi);
 
         tut = new JButton("Tutorial");
-        tut.setBounds(520,300,240,50);
+        tut.setBounds(120,40,160,40);
         this.add(tut);
         
         end = new JButton("Beenden");
-        end.setBounds(520,400,240,50);
-        this.add(end);
+        end.setBounds(120,40,160,40);
+        this.add(end); 
         
-        menu();									//Methode Menu wird aufgerufen
-        
+
         single.addActionListener(this);			//Buttons wird der Actionlistner hinzugefügt
         multi.addActionListener(this);
         tut.addActionListener(this);
         end.addActionListener(this);
         
         
-    	this.setResizable(false);				//Änderung der Größe des Fensters wird deaktivert
+     	this.setLocationRelativeTo(null);		//setzt das Fenster in die mitte
+     	this.setLayout(null);					
+     	this.setResizable(false);				//Änderung der Größe des Fensters wird deaktivert
     	this.setVisible(true);					//Fenster wird sichtbar gemacht
     }
     
-    public void menu() {
-    	JMenuBar bar = new JMenuBar();			//Menübar wird erzeugt
-    	JMenu menu = new JMenu("Datei");		//Menuspalte wird erzeugt und Datei genannt
-    	
-    	bar.add(menu);							//Menüspalten werden der Menüzeile hinzugefügt
-    	this.add(bar);							//???
-    	setJMenuBar(bar);						//Menü wird gesetzt
-    }
+
     
 	@Override
 	public void actionPerformed(ActionEvent e) {

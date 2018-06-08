@@ -13,8 +13,8 @@ public class Welt extends JFrame {
 	private static int laengeFeld=8;
 	private static int breiteFeld=8;
 	
-	private static int weiteFenster = 1000;
-	private static int hoeheFenster = 1000;
+	private static int weiteFenster = 800;
+	private static int hoeheFenster = 850;
 	
 	private int gerade=0;
 	
@@ -33,13 +33,14 @@ public class Welt extends JFrame {
     	this.pack();
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(weiteFenster,hoeheFenster);
+    	setLocationRelativeTo(null);							//setzt das Fenster in die mitte
     	menu();
     		
     	
     	this.setResizable(false);				//Änderung der Größe des Fensters wird deaktivert
     	this.setVisible(true);					//Fenster wird sichtbar gemacht
     	
-    	screen=new Screen();																			//neues Objekt der Klasse Screen
+    	screen=new Screen();					//neues Objekt der Klasse Screen
 		add(screen);
     	
     	brett();
@@ -49,9 +50,17 @@ public class Welt extends JFrame {
 	
     public void menu() {
     	JMenuBar bar = new JMenuBar();			//Menübar wird erzeugt
-    	JMenu menu = new JMenu("Datei");		//Menuspalte wird erzeugt und Datei genannt
+    	JMenu datei = new JMenu("Datei");		//Menuspalte wird erzeugt und Datei genannt
+    	JMenu high = new JMenu("Highscore");	//Menuspalte wird erzeugt und Highscore genannt
+    	JMenu opt = new JMenu("Optionen");		//Menuspalte wird erzeugt und Optionen genannt
+    	JMenu hel = new JMenu("Hilfe");			//Menuspalte wird erzeugt und Hilfe genannt
     	
-    	bar.add(menu);							//Menüspalten werden der Menüzeile hinzugefügt
+    	
+    	
+    	bar.add(datei);							//Menüspalten werden der Menüzeile hinzugefügt
+    	bar.add(high);								
+    	bar.add(opt);
+    	bar.add(hel);
     	this.add(bar);							//???
     	setJMenuBar(bar);						//Menü wird gesetzt
     }
