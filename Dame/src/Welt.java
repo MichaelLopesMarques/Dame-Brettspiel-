@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.SwingUtilities;
 
 import java.awt.image.BufferedImage;
 
@@ -21,7 +22,11 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	private static int breiteFeld=8;
 	
 	private static int weiteFenster = 800;
-	private static int hoeheFenster = 875;
+	private static int hoeheFenster = 800;
+	private int menuhoehe=23;
+	
+	private int hoehenabstand=getInsets().top;
+	private int seitenabstand=getInsets().left;
 	
 	private int gerade=0;
 	
@@ -41,7 +46,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		super("Dame");
     	this.pack();
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	this.setSize(weiteFenster,hoeheFenster);
+    	this.setSize(weiteFenster+getInsets().left,hoeheFenster+getInsets().top+menuhoehe);
     	setLocationRelativeTo(null);						//setzt das Fenster in die mitte
     	menu();
     		
@@ -94,25 +99,26 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		for (int x=0;x<laengeFeld;x++) {
 			for (int y=0;y<breiteFeld;y++) {
 				feld[x][y]=new Feld(x,y,weiss,schwarz,weissstein,schwarzstein);
+				feld[x][y].setzWert(x,y);
 				gerade=x+y;
 				if (gerade%2==0) {
 					feld[x][y].setWeiss(weiss);
-					System.out.print(1);
+					System.out.print(Feld.wert);
 					z++;
 					if (z>7) {
 						System.out.println();
 						z=0;
 					}
 				}else {
-					if(y<=2) {
+					if(x<=2) {
 						feld[x][y].setSchwarzstein(schwarzstein);
-						System.out.print(2);
-					}else if (y>=5) {
-						System.out.print(3);
+						System.out.print(Feld.wert);
+					}else if (x>=5) {
+						System.out.print(Feld.wert);
 						feld[x][y].setWeissstein(weissstein);
 					}else {
 						feld[x][y].setSchwarz(schwarz);
-						System.out.print(0);
+						System.out.print(Feld.wert);
 					}
 					z++;
 					if (z>7) {
@@ -163,9 +169,11 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	}
 
 	@Override
-	public void mousePressed(MouseEvent arg0) {
-		// TODO Auto-generated method stub
-		
+	public void mousePressed(MouseEvent e) {
+		if(SwingUtilities.isLeftMouseButton(e)){
+			Regel.klicklinks(e.getX()-seitenabstand, e.getY()-hoehenabstand-menuhoehe);
+			screen.repaint();
+		}
 	}
 
 	@Override
@@ -184,6 +192,6 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			brett();							//Das Spielbrett wird neu gezeichnet
 			screen.repaint();
 		}
-		
 	}
+
 }

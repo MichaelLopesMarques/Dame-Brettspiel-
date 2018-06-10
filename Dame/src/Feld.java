@@ -4,11 +4,15 @@ import java.awt.image.BufferedImage;
 
 public class Feld {
 	
+	 public static final int leerFeld=0, weissSpieler=1, schwarzSpieler=2;
+	
 	private int x;
 	private int y;
 	
 	private static int weiteW=100;
 	private static int hoeheW=100;
+	
+	public static int wert;
 	
 	private BufferedImage weiss, schwarz, weissstein, schwarzstein;
 	
@@ -35,6 +39,17 @@ public class Feld {
 	
 	public void setSchwarzstein(BufferedImage schwarzstein) {
 		this.schwarzstein=schwarzstein;
+	}
+	
+	public void setzWert(int xWert, int yWert) {
+			if (xWert<=2&&(xWert+yWert)%2==1) {
+				wert=schwarzSpieler;
+			}else if (xWert>=5&&(xWert+yWert)%2==1) {
+				wert=weissSpieler;
+			}else {
+				wert=leerFeld;
+			}
+		
 	}
 
 	public void draw(Graphics g) {
