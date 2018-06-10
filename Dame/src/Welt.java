@@ -11,6 +11,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
+import java.awt.Point;
 
 import java.awt.image.BufferedImage;
 
@@ -33,6 +34,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	private Feld[][] feld;
 	
 	private Screen screen;
+	private Regel regel;
 	
 	static JMenuItem dateiNew, dateiEnd;
 	
@@ -56,9 +58,9 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	screen=new Screen();					//neues Objekt der Klasse Screen
 		add(screen);
     	
+		this.addMouseListener(this);
+		
     	brett();
-    	
-    	screen.repaint();
 	}
 	
     public void menu() {
@@ -101,7 +103,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 				feld[x][y]=new Feld(x,y,weiss,schwarz,weissstein,schwarzstein);
 				feld[x][y].setzWert(x,y);
 				gerade=x+y;
-				if (gerade%2==0) {
+				if (gerade%2==0&&Feld.wert==0) {
 					feld[x][y].setWeiss(weiss);
 					System.out.print(Feld.wert);
 					z++;
@@ -110,10 +112,10 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 						z=0;
 					}
 				}else {
-					if(x<=2) {
+					if(Feld.wert==2) {
 						feld[x][y].setSchwarzstein(schwarzstein);
 						System.out.print(Feld.wert);
-					}else if (x>=5) {
+					}else if (Feld.wert==1) {
 						System.out.print(Feld.wert);
 						feld[x][y].setWeissstein(weissstein);
 					}else {

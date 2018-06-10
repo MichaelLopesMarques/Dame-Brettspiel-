@@ -2,11 +2,9 @@
 public class Regel {
 
 	public static void klicklinks(int x, int y) {
-		int xFeld = x/Feld.getweiteW();
-		int yFeld = y/Feld.gethoeheW();
-		if ((x+y)%2==1) {
-			
-		}
+		int xFeld = (int) x/Feld.getweiteW();
+		int yFeld = (int) y/Feld.gethoeheW();
+		System.out.println(xFeld+","+yFeld);
 	}
 
 }
