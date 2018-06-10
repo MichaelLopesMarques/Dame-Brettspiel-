@@ -15,6 +15,8 @@ import java.awt.image.BufferedImage;
 
 public class Welt extends JFrame implements MouseListener, ActionListener{
 	
+	private static final long serialVersionUID = 1L;
+	
 	private static int laengeFeld=8;
 	private static int breiteFeld=8;
 	
@@ -43,7 +45,6 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	setLocationRelativeTo(null);						//setzt das Fenster in die mitte
     	menu();
     		
-    	
     	this.setResizable(false);				//Änderung der Größe des Fensters wird deaktivert
     	this.setVisible(true);					//Fenster wird sichtbar gemacht
     	
@@ -65,16 +66,21 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	
     	JMenuItem dateiNew = new JMenuItem("Neues Spiel");	
     	JMenuItem dateiEnd = new JMenuItem("Beenden");
-    	
-    	bar.add(datei);							//Menüspalten werden der Menüzeile hinzugefügt
-    	bar.add(high);								
-    	bar.add(opt);
-    	bar.add(help);
+    
     	
     	datei.add(dateiNew);
     	datei.add(dateiEnd);
     	
     	dateiEnd.addActionListener(this);			//Menüpunkt wird der Actionlistner hinzugefügt   
+    	dateiNew.addActionListener(this);
+    	high.addActionListener(this);
+    	opt.addActionListener(this);
+    	help.addActionListener(this);
+    	
+    	bar.add(datei);							//Menüspalten werden der Menüzeile hinzugefügt
+    	bar.add(high);								
+    	bar.add(opt);
+    	bar.add(help);
     	
     	setJMenuBar(bar);						//Menü wird gesetzt
     	
