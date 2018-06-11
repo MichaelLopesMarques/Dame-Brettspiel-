@@ -19,22 +19,16 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static int laengeFeld=8;
-	private static int breiteFeld=8;
+	protected static int laengeFeld=8;
+	protected static int breiteFeld=8;
 	
 	private static int weiteFenster = 800;
 	private static int hoeheFenster = 800;
 	private int menuhoehe=23;
 	
-	private int hoehenabstand=getInsets().top;
-	private int seitenabstand=getInsets().left;
-	
-	private int gerade=0;
-	
-	private Feld[][] feld;
+	protected static Feld[][] feld;
 	
 	private Screen screen;
-	private Regel regel;
 	
 	static JMenuItem dateiNew, dateiEnd;
 	
@@ -101,26 +95,28 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		for (int x=0;x<laengeFeld;x++) {
 			for (int y=0;y<breiteFeld;y++) {
 				feld[x][y]=new Feld(x,y,weiss,schwarz,weissstein,schwarzstein);
-				feld[x][y].setzWert(x,y);
-				gerade=x+y;
-				if (gerade%2==0&&Feld.wert==0) {
+				if ((x+y)%2==0) {
+					feld[x][y].setLeerFeld(true);
 					feld[x][y].setWeiss(weiss);
-					System.out.print(Feld.wert);
+					System.out.print(0);
 					z++;
 					if (z>7) {
 						System.out.println();
 						z=0;
 					}
 				}else {
-					if(Feld.wert==2) {
+					if(y<=2) {
+						feld[x][y].setSchwarzSpieler(true);
 						feld[x][y].setSchwarzstein(schwarzstein);
-						System.out.print(Feld.wert);
-					}else if (Feld.wert==1) {
-						System.out.print(Feld.wert);
+						System.out.print(1);
+					}else if (y>=5) {
+						feld[x][y].setWeissSpieler(true);
 						feld[x][y].setWeissstein(weissstein);
+						System.out.print(2);
 					}else {
+						feld[x][y].setLeerFeld(true);
 						feld[x][y].setSchwarz(schwarz);
-						System.out.print(Feld.wert);
+						System.out.print(0);
 					}
 					z++;
 					if (z>7) {
@@ -130,9 +126,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 				}
 			}
 		}
-		
 	}
-	
 	
 	public class Screen extends JPanel{					//Unterklasse von JFrame (JPanel)
 		private static final long serialVersionUID = 1L;
@@ -173,7 +167,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	@Override
 	public void mousePressed(MouseEvent e) {
 		if(SwingUtilities.isLeftMouseButton(e)){
-			Regel.klicklinks(e.getX()-seitenabstand, e.getY()-hoehenabstand-menuhoehe);
+			Regel.klicklinks(e.getX()-getInsets().left, e.getY()-getInsets().top-menuhoehe);
 			screen.repaint();
 		}
 	}

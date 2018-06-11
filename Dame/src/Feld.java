@@ -4,15 +4,15 @@ import java.awt.image.BufferedImage;
 
 public class Feld {
 	
-	 public static final int leerFeld=0, weissSpieler=1, schwarzSpieler=2;
-	
 	private int x;
 	private int y;
 	
 	private static int weiteW=100;
 	private static int hoeheW=100;
 	
-	public static int wert;
+	private boolean schwarzSpieler;
+	private boolean weissSpieler;
+	private boolean leerFeld;
 	
 	private BufferedImage weiss, schwarz, weissstein, schwarzstein;
 	
@@ -40,30 +40,18 @@ public class Feld {
 	public void setSchwarzstein(BufferedImage schwarzstein) {
 		this.schwarzstein=schwarzstein;
 	}
-	
-	public void setzWert(int xWert, int yWert) {
-			if (xWert<=2&&(xWert+yWert)%2==1) {
-				wert=schwarzSpieler;
-			}else if (xWert>=5&&(xWert+yWert)%2==1) {
-				wert=weissSpieler;
-			}else {
-				wert=leerFeld;
-			}
-		
-	}
 
 	public void draw(Graphics g) {
-		int gerade=x+y;
-		if (gerade%2==0) {
-		g.drawImage(weiss, x*weiteW, y*hoeheW, null);
-		}else {
-			if (y<=2) {
-				g.drawImage(schwarzstein, x*weiteW, y*hoeheW, null);
-			}else if (y>=5) {
-				g.drawImage(weissstein, x*weiteW, y*hoeheW, null);
+		if(leerFeld==true) {
+			if ((x+y)%2==0) {
+				g.drawImage(weiss, x*weiteW, y*hoeheW, null);
 			}else {
 				g.drawImage(schwarz, x*weiteW, y*hoeheW, null);
 			}
+		}else if(weissSpieler==true) {
+			g.drawImage(weissstein, x*weiteW, y*hoeheW, null);
+		}else if(schwarzSpieler==true) {
+			g.drawImage(schwarzstein, x*weiteW, y*hoeheW, null);
 		}
 	}
 
@@ -73,5 +61,29 @@ public class Feld {
 
 	public static int getweiteW() {
 		return weiteW;
+	}
+
+	public boolean getSchwarzSpieler() {
+		return schwarzSpieler;
+	}
+
+	public void setSchwarzSpieler(boolean schwarzSpieler) {
+		this.schwarzSpieler = schwarzSpieler;
+	}
+
+	public boolean getWeissSpieler() {
+		return weissSpieler;
+	}
+
+	public void setWeissSpieler(boolean weissSpieler) {
+		this.weissSpieler = weissSpieler;
+	}
+
+	public boolean getLeerFeld() {
+		return leerFeld;
+	}
+
+	public void setLeerFeld(boolean leerFeld) {
+		this.leerFeld = leerFeld;
 	}
 }
