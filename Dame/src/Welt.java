@@ -71,8 +71,8 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	JMenu opt = new JMenu("Optionen");		//Menuspalte wird erzeugt und Optionen genannt
     	JMenu help = new JMenu("Hilfe");			//Menuspalte wird erzeugt und Hilfe genannt
     	
-    	JMenuItem dateiNew = new JMenuItem("Neues Spiel");	
-    	JMenuItem dateiEnd = new JMenuItem("Beenden");
+    	dateiNew = new JMenuItem("Neues Spiel");	
+    	dateiEnd = new JMenuItem("Beenden");
     
     	
     	datei.add(dateiNew);
