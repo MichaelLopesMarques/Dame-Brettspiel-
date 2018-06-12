@@ -42,7 +42,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		super("Dame");
     	this.pack();
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    	this.setSize(weiteFenster+getInsets().left,hoeheFenster+getInsets().top+menuhoehe);
+    	this.setSize(weiteFenster+getInsets().left-2,hoeheFenster+getInsets().top+menuhoehe-2);
     	setLocationRelativeTo(null);						//setzt das Fenster in die mitte
     	menu();
     		
