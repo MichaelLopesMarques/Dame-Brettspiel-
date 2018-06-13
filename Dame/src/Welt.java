@@ -38,6 +38,9 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	private BufferedImage weissstein = Bilder.Anpassung(Bilder.labeBild("bilder/weissstein.png"), Feld.gethoeheW(),Feld.getweiteW());
 	private BufferedImage schwarzstein = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzstein.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
+	private BufferedImage schwarzgewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private BufferedImage weissgewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/weissGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
+	
 	public Welt() {
 		super("Dame");
     	this.pack();
@@ -94,7 +97,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		feld = new Feld[laengeFeld][breiteFeld];
 		for (int x=0;x<laengeFeld;x++) {
 			for (int y=0;y<breiteFeld;y++) {
-				feld[x][y]=new Feld(x,y,weiss,schwarz,weissstein,schwarzstein);
+				feld[x][y]=new Feld(x,y,weiss,schwarz,weissstein,schwarzstein,schwarzgewaehlt,weissgewaehlt);
 				if ((x+y)%2==0) {
 					feld[x][y].setLeerFeld(true);
 					feld[x][y].setWeiss(weiss);

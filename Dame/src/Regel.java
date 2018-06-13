@@ -13,10 +13,11 @@ public class Regel extends Welt{
 		int yFeld = (int) y/Feld.gethoeheW();
 		System.out.println(yFeld+","+xFeld);
 		System.out.println(x+","+y);
+		
 		if(feld[xFeld][yFeld].getWeissSpieler()==true && wertWeiss==0 && wertSchwarz==0) {
 			System.out.println("weiﬂer stein nehmen");
 			feld[xFeld][yFeld].setWeissSpieler(false);
-			feld[xFeld][yFeld].setLeerFeld(true);
+			feld[xFeld][yFeld].setWeissWahl(true);
 			wertWeiss++;
 			merkxwert=xFeld;
 			merkywert=yFeld;
@@ -28,6 +29,8 @@ public class Regel extends Welt{
 			System.out.println("weiﬂer stein setzen");
 			feld[xFeld][yFeld].setLeerFeld(false);
 			feld[xFeld][yFeld].setWeissSpieler(true);
+			feld[merkxwert][merkywert].setWeissWahl(false);
+			feld[merkxwert][merkywert].setLeerFeld(true);
 			wertWeiss=0;
 			return;
 		}else if(wertWeiss==1 && (!feld[xFeld][yFeld].getLeerFeld()==true || (xFeld+yFeld)%2==0 ||
@@ -40,7 +43,7 @@ public class Regel extends Welt{
 		if(feld[xFeld][yFeld].getSchwarzSpieler()==true && wertWeiss==0 && wertSchwarz==0) {
 			System.out.println("schwarzer stein nehmen");
 			feld[xFeld][yFeld].setSchwarzSpieler(false);
-			feld[xFeld][yFeld].setLeerFeld(true);
+			feld[xFeld][yFeld].setSchwarzWahl(true);
 			wertSchwarz++;
 			merkxwert=xFeld;
 			merkywert=yFeld;
@@ -52,6 +55,8 @@ public class Regel extends Welt{
 			System.out.println("schwarzer stein setzen");
 			feld[xFeld][yFeld].setLeerFeld(false);
 			feld[xFeld][yFeld].setSchwarzSpieler(true);
+			feld[merkxwert][merkywert].setSchwarzWahl(false);
+			feld[merkxwert][merkywert].setLeerFeld(true);
 			wertSchwarz=0;
 			return;
 		}else if(wertSchwarz==1 && (!feld[xFeld][yFeld].getLeerFeld()==true || (xFeld+yFeld)%2==0 ||

@@ -12,17 +12,21 @@ public class Feld {
 	
 	private boolean schwarzSpieler;
 	private boolean weissSpieler;
+	private boolean schwarzWahl;
+	private boolean weissWahl;
 	private boolean leerFeld;
 	
-	private BufferedImage weiss, schwarz, weissstein, schwarzstein;
+	private BufferedImage weiss, schwarz, weissstein, schwarzstein, schwarzgewaehlt,weissgewaehlt;
 	
-	public Feld(int x, int y,BufferedImage weiss,BufferedImage schwarz,BufferedImage weissstein,BufferedImage schwarzstein) {
+	public Feld(int x, int y,BufferedImage weiss,BufferedImage schwarz,BufferedImage weissstein,BufferedImage schwarzstein,BufferedImage schwarzgewaehlt,BufferedImage weissgewaehlt) {
 		this.x=x;
 		this.y=y;
 		this.weiss=weiss;
 		this.schwarz=schwarz;
 		this.weissstein=weissstein;
 		this.schwarzstein=schwarzstein;
+		this.schwarzgewaehlt=schwarzgewaehlt;
+		this.weissgewaehlt=weissgewaehlt;
 	}
 	
 	public void setWeiss(BufferedImage weiss) {
@@ -52,6 +56,10 @@ public class Feld {
 			g.drawImage(weissstein, x*weiteW, y*hoeheW, null);
 		}else if(schwarzSpieler==true) {
 			g.drawImage(schwarzstein, x*weiteW, y*hoeheW, null);
+		}else if(schwarzWahl==true) {
+			g.drawImage(schwarzgewaehlt, x*weiteW, y*hoeheW, null);
+		}else if(weissWahl==true) {
+			g.drawImage(weissgewaehlt, x*weiteW, y*hoeheW, null);
 		}
 	}
 
@@ -85,5 +93,21 @@ public class Feld {
 
 	public void setLeerFeld(boolean leerFeld) {
 		this.leerFeld = leerFeld;
+	}
+	
+	public boolean getWeissWahl() {
+		return weissWahl;
+	}
+
+	public void setWeissWahl(boolean weissWahl) {
+		this.weissWahl = weissWahl;
+	}
+	
+	public boolean getSchwarzWahl() {
+		return schwarzWahl;
+	}
+
+	public void setSchwarzWahl(boolean schwarzWahl) {
+		this.schwarzWahl = schwarzWahl;
 	}
 }
