@@ -24,21 +24,22 @@ public class Regel extends Welt{
 			return;
 		}
 		
-		if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&&
-				(feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1]||feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1])) {
-			System.out.println("weiﬂer stein setzen");
-			feld[xFeld][yFeld].setLeerFeld(false);
-			feld[xFeld][yFeld].setWeissSpieler(true);
-			feld[merkxwert][merkywert].setWeissWahl(false);
-			feld[merkxwert][merkywert].setLeerFeld(true);
-			wertWeiss=0;
-			return;
-		}else if(wertWeiss==1 && (!feld[xFeld][yFeld].getLeerFeld()==true || (xFeld+yFeld)%2==0 ||
-				!(feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1]||feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1]))){
-			feld[merkxwert][merkywert].setLeerFeld(false);
-			feld[merkxwert][merkywert].setWeissSpieler(true);
-			wertWeiss=0;
-		}
+			if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&&
+					(feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1]||feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1])) {
+				System.out.println("weiﬂer stein setzen");
+				feld[xFeld][yFeld].setLeerFeld(false);
+				feld[xFeld][yFeld].setWeissSpieler(true);
+				feld[merkxwert][merkywert].setWeissWahl(false);
+				feld[merkxwert][merkywert].setLeerFeld(true);
+				wertWeiss=0;
+				return;
+			}else if(wertWeiss==1 && (!feld[xFeld][yFeld].getLeerFeld()==true || (xFeld+yFeld)%2==0 ||
+					!(feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1]||feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1]))){
+				feld[merkxwert][merkywert].setLeerFeld(false);
+				feld[merkxwert][merkywert].setWeissSpieler(true);
+				wertWeiss=0;
+				return;
+			}
 		
 		if(feld[xFeld][yFeld].getSchwarzSpieler()==true && wertWeiss==0 && wertSchwarz==0) {
 			System.out.println("schwarzer stein nehmen");
@@ -51,7 +52,7 @@ public class Regel extends Welt{
 		}
 		
 		if(feld[xFeld][yFeld].getLeerFeld()==true && wertSchwarz==1 && !((xFeld+yFeld)%2==0)&&
-				feld[xFeld][yFeld]==feld[merkxwert+1][merkywert+1]||feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1]) {
+				(feld[xFeld][yFeld]==feld[merkxwert+1][merkywert+1]||feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1])) {
 			System.out.println("schwarzer stein setzen");
 			feld[xFeld][yFeld].setLeerFeld(false);
 			feld[xFeld][yFeld].setSchwarzSpieler(true);
@@ -64,6 +65,7 @@ public class Regel extends Welt{
 			feld[merkxwert][merkywert].setLeerFeld(false);
 			feld[merkxwert][merkywert].setSchwarzSpieler(true);
 			wertSchwarz=0;
+			return;
 		}
 	}
 
