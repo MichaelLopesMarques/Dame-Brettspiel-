@@ -8,19 +8,19 @@ import java.io.FileInputStream;
 import javax.imageio.ImageIO;
 
 public class Bilder {
-	public static BufferedImage labeBild(String path) {			//ohne diese Klasse kannst du die Bilder nicht reinladen!
-		try {																				//was Hochriskantes passiert hier mal wieder (huhu riskant!)
+	public static BufferedImage labeBild(String path) {											//Bild laden	
+		try {																				
 			InputStream in = new BufferedInputStream(new FileInputStream(path));
-			return ImageIO.read(in);	//return die Bilder, die in der Klasse reingeladen werden und vorhanden sind?
+			return ImageIO.read(in);															//gibt Bild zurück
 		} catch (IOException e) {
-			e.printStackTrace();				//falls er kein Bild findet
+			e.printStackTrace();																//falls er kein Bild findet
 		}
-		return null;		//brauch noch ein Return, weil es möglich sein kann, dass er kein Return beim try/catch zurückgibt
+		return null;		
 	}
 	
 	public static BufferedImage Anpassung(BufferedImage anpassung, int weite, int hoehe) {		//Anpassung der Skalierung des Bildes
 		BufferedImage anpassen = new BufferedImage(weite, hoehe, anpassung.getType());			//Bild wir mit höhe und breite eingefügt
-		Graphics g = anpassen.getGraphics();													//dam wird das bild irgendwie angepasst
+		Graphics g = anpassen.getGraphics();													//Bild eingefügt
 		g.drawImage(anpassung,0,0,weite,hoehe,null);
 		g.dispose();
 		return anpassen;

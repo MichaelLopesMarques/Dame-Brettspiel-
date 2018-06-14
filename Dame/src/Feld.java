@@ -18,7 +18,8 @@ public class Feld {
 	
 	private BufferedImage weiss, schwarz, weissstein, schwarzstein, schwarzgewaehlt,weissgewaehlt;
 	
-	public Feld(int x, int y,BufferedImage weiss,BufferedImage schwarz,BufferedImage weissstein,BufferedImage schwarzstein,BufferedImage schwarzgewaehlt,BufferedImage weissgewaehlt) {
+	public Feld(int x, int y,BufferedImage weiss,BufferedImage schwarz,BufferedImage weissstein,
+			BufferedImage schwarzstein,BufferedImage schwarzgewaehlt,BufferedImage weissgewaehlt) {
 		this.x=x;
 		this.y=y;
 		this.weiss=weiss;
@@ -46,19 +47,19 @@ public class Feld {
 	}
 
 	public void draw(Graphics g) {
-		if(leerFeld==true) {
+		if(leerFeld==true) {											//wenn das Feld leer ist
 			if ((x+y)%2==0) {
 				g.drawImage(weiss, x*weiteW, y*hoeheW, null);
 			}else {
 				g.drawImage(schwarz, x*weiteW, y*hoeheW, null);
 			}
-		}else if(weissSpieler==true) {
+		}else if(weissSpieler==true) {									//weißer stein drauf ist
 			g.drawImage(weissstein, x*weiteW, y*hoeheW, null);
-		}else if(schwarzSpieler==true) {
+		}else if(schwarzSpieler==true) {								//schwarzer stein drauf ist
 			g.drawImage(schwarzstein, x*weiteW, y*hoeheW, null);
-		}else if(schwarzWahl==true) {
+		}else if(schwarzWahl==true) {									//wenn der stein gedrückt wird
 			g.drawImage(schwarzgewaehlt, x*weiteW, y*hoeheW, null);
-		}else if(weissWahl==true) {
+		}else if(weissWahl==true) {										//wenn der stein gedrückt wird
 			g.drawImage(weissgewaehlt, x*weiteW, y*hoeheW, null);
 		}
 	}

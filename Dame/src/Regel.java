@@ -37,6 +37,18 @@ public class Regel extends Welt{
 		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&& (merkxwert+1)>7 &&
 			feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1]) {
 			weissSetzen();
+		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&& (merkxwert-1)>=0 &&
+				feld[merkxwert-1][merkywert-1].getSchwarzSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert-2][merkywert-2]) {
+			weissSpringen();
+			feld[merkxwert-1][merkywert-1].setSchwarzSpieler(false);
+			feld[merkxwert-1][merkywert-1].setLeerFeld(true);
+			return;
+		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&& (merkxwert+1)<=7 &&
+				feld[merkxwert+1][merkywert-1].getSchwarzSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert+2][merkywert-2]) {
+			weissSpringen();
+			feld[merkxwert+1][merkywert-1].setSchwarzSpieler(false);
+			feld[merkxwert+1][merkywert-1].setLeerFeld(true);
+			return;
 		}else if(wertWeiss==1 && (!feld[xFeld][yFeld].getLeerFeld()==true || (xFeld+yFeld)%2==0 || (merkxwert-1)<0 || (merkxwert+1)>7 ||
 			!(feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1]||feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1]))){
 			feld[merkxwert][merkywert].setLeerFeld(false);
@@ -65,6 +77,16 @@ public class Regel extends Welt{
 		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertSchwarz==1 && !((xFeld+yFeld)%2==0)&&(merkxwert+1)>7 &&
 				feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1]) {
 			schwarzSetzen();
+		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertSchwarz==1 && !((xFeld+yFeld)%2==0)&&(merkxwert+1)<=7 &&
+				feld[merkxwert+1][merkywert+1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert+2][merkywert+2]) {
+			schwarzSpringen();
+			feld[merkxwert+1][merkywert+1].setWeissSpieler(false);
+			feld[merkxwert+1][merkywert+1].setLeerFeld(true);
+		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertSchwarz==1 && !((xFeld+yFeld)%2==0)&&(merkxwert-1)>=0 &&
+				feld[merkxwert-1][merkywert+1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert-2][merkywert+2]) {
+			schwarzSpringen();
+			feld[merkxwert-1][merkywert+1].setWeissSpieler(false);
+			feld[merkxwert-1][merkywert+1].setLeerFeld(true);
 		}else if(wertSchwarz==1 && (!feld[xFeld][yFeld].getLeerFeld()==true || (xFeld+yFeld)%2==0 || (merkxwert-1)<0 || (merkxwert+1)>7 ||
 				!(feld[xFeld][yFeld]==feld[merkxwert+1][merkywert+1]||feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1]))){
 			feld[merkxwert][merkywert].setLeerFeld(false);
@@ -92,5 +114,23 @@ public class Regel extends Welt{
 		feld[merkxwert][merkywert].setLeerFeld(true);
 		wertSchwarz=0;
 		return;
+	}
+	
+	public static void weissSpringen() {
+		System.out.println("weisser stein springt");
+		feld[xFeld][yFeld].setLeerFeld(false);
+		feld[xFeld][yFeld].setWeissSpieler(true);
+		feld[merkxwert][merkywert].setWeissWahl(false);
+		feld[merkxwert][merkywert].setLeerFeld(true);
+		wertWeiss=0;
+	}
+	
+	public static void schwarzSpringen() {
+		System.out.println("schwarzer stein springt");
+		feld[xFeld][yFeld].setLeerFeld(false);
+		feld[xFeld][yFeld].setSchwarzSpieler(true);
+		feld[merkxwert][merkywert].setSchwarzWahl(false);
+		feld[merkxwert][merkywert].setLeerFeld(true);
+		wertSchwarz=0;
 	}
 }
