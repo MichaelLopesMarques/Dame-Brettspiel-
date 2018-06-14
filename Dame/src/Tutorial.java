@@ -11,6 +11,7 @@ public class Tutorial extends JFrame {
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	this.setSize(1200,900);
     	this.setVisible(true);					//Fenster wird sichtbar gemacht
+    	this.setLocationRelativeTo(null);
 	}
 	public void paint(Graphics g){
 		super.paint(g);
