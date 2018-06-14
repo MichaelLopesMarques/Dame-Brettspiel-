@@ -37,13 +37,13 @@ public class Regel extends Welt{
 		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&& (merkxwert+1)>7 &&
 			feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1]) {
 			weissSetzen();
-		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&& (merkxwert-1)>=0 &&
+		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&& (merkxwert-2)>=0 &&
 				feld[merkxwert-1][merkywert-1].getSchwarzSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert-2][merkywert-2]) {
 			weissSpringen();
 			feld[merkxwert-1][merkywert-1].setSchwarzSpieler(false);
 			feld[merkxwert-1][merkywert-1].setLeerFeld(true);
 			return;
-		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&& (merkxwert+1)<=7 &&
+		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertWeiss==1 && !((xFeld+yFeld)%2==0)&& (merkxwert+2)<=7 &&
 				feld[merkxwert+1][merkywert-1].getSchwarzSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert+2][merkywert-2]) {
 			weissSpringen();
 			feld[merkxwert+1][merkywert-1].setSchwarzSpieler(false);
@@ -77,16 +77,18 @@ public class Regel extends Welt{
 		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertSchwarz==1 && !((xFeld+yFeld)%2==0)&&(merkxwert+1)>7 &&
 				feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1]) {
 			schwarzSetzen();
-		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertSchwarz==1 && !((xFeld+yFeld)%2==0)&&(merkxwert+1)<=7 &&
+		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertSchwarz==1 && !((xFeld+yFeld)%2==0)&&(merkxwert+2)<=7 &&
 				feld[merkxwert+1][merkywert+1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert+2][merkywert+2]) {
 			schwarzSpringen();
 			feld[merkxwert+1][merkywert+1].setWeissSpieler(false);
 			feld[merkxwert+1][merkywert+1].setLeerFeld(true);
-		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertSchwarz==1 && !((xFeld+yFeld)%2==0)&&(merkxwert-1)>=0 &&
+			return;
+		}else if(feld[xFeld][yFeld].getLeerFeld()==true && wertSchwarz==1 && !((xFeld+yFeld)%2==0)&&(merkxwert-2)>=0 &&
 				feld[merkxwert-1][merkywert+1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert-2][merkywert+2]) {
 			schwarzSpringen();
 			feld[merkxwert-1][merkywert+1].setWeissSpieler(false);
 			feld[merkxwert-1][merkywert+1].setLeerFeld(true);
+			return;
 		}else if(wertSchwarz==1 && (!feld[xFeld][yFeld].getLeerFeld()==true || (xFeld+yFeld)%2==0 || (merkxwert-1)<0 || (merkxwert+1)>7 ||
 				!(feld[xFeld][yFeld]==feld[merkxwert+1][merkywert+1]||feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1]))){
 			feld[merkxwert][merkywert].setLeerFeld(false);
