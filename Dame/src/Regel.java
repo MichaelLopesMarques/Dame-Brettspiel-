@@ -57,6 +57,13 @@ public class Regel extends Welt{
 			return;
 		}
 		
+		for(int i=0;i<laengeFeld;i++) {
+			if(feld[i][0].getWeissSpieler()==true) {
+				feld[i][0].setWeissSpieler(false);
+				feld[i][0].setWeissDame(true);
+			}
+		}
+		
 		if(feld[xFeld][yFeld].getSchwarzSpieler()==true && wertWeiss==0 && wertSchwarz==0) {
 			System.out.println("schwarzer stein nehmen");
 			feld[xFeld][yFeld].setSchwarzSpieler(false);
@@ -95,6 +102,13 @@ public class Regel extends Welt{
 			feld[merkxwert][merkywert].setSchwarzSpieler(true);
 			wertSchwarz=0;
 			return;
+		}
+		
+		for(int i=0;i<laengeFeld;i++) {
+			if(feld[i][7].getSchwarzSpieler()==true) {
+				feld[i][7].setSchwarzSpieler(false);
+				feld[i][7].setSchwarzDame(true);
+			}
 		}
 	}
 
