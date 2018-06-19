@@ -12,16 +12,24 @@ public class Feld {
 	
 	private boolean schwarzSpieler;
 	private boolean weissSpieler;
+	
 	private boolean schwarzWahl;
 	private boolean weissWahl;
+	
 	private boolean leerFeld;
+	private boolean feldhinbewegen;
+	
 	private boolean schwarzdameFigur;
 	private boolean weissdameFigur;
 	
-	private BufferedImage weiss, schwarz, weissstein, schwarzstein, schwarzgewaehlt,weissgewaehlt,schwarzdame,weissdame;
+	private boolean schwarzdameWahl;
+	private boolean weissdameWahl;
+	
+	private BufferedImage weiss, schwarz, weissstein, schwarzstein, schwarzgewaehlt,weissgewaehlt,schwarzdame,weissdame, feldbewegen, schwarzdamegewaehlt, weissdamegewaehlt;
 	
 	public Feld(int x, int y,BufferedImage weiss,BufferedImage schwarz,BufferedImage weissstein,
-			BufferedImage schwarzstein,BufferedImage schwarzgewaehlt,BufferedImage weissgewaehlt,BufferedImage schwarzdame, BufferedImage weissdame) {
+			BufferedImage schwarzstein,BufferedImage schwarzgewaehlt,BufferedImage weissgewaehlt,BufferedImage schwarzdame, BufferedImage weissdame,
+			BufferedImage feldbewegen, BufferedImage schwarzdamegewaehlt, BufferedImage weissdamegewaehlt) {
 		this.x=x;
 		this.y=y;
 		this.weiss=weiss;
@@ -32,6 +40,9 @@ public class Feld {
 		this.weissgewaehlt=weissgewaehlt;
 		this.schwarzdame=schwarzdame;
 		this.weissdame=weissdame;
+		this.feldbewegen=feldbewegen;
+		this.schwarzdamegewaehlt=schwarzdamegewaehlt;
+		this.weissdamegewaehlt=weissdamegewaehlt;
 	}
 	
 	public void setWeiss(BufferedImage weiss) {
@@ -48,14 +59,6 @@ public class Feld {
 	
 	public void setSchwarzstein(BufferedImage schwarzstein) {
 		this.schwarzstein=schwarzstein;
-	}
-	
-	public void setWeissDame(BufferedImage weissdame) {
-		this.weissdame=weissdame;
-	}
-	
-	public void setSchwarzDame(BufferedImage schwarzdame) {
-		this.schwarzdame=schwarzdame;
 	}
 
 	public void draw(Graphics g) {
@@ -77,6 +80,12 @@ public class Feld {
 			g.drawImage(schwarzdame, x*weiteW, y*hoeheW, null);
 		}else if(weissdameFigur==true) {										//wenn der stein gedrückt wird
 			g.drawImage(weissdame, x*weiteW, y*hoeheW, null);
+		}else if(feldhinbewegen==true) {										//wenn der stein gedrückt wird
+			g.drawImage(feldbewegen, x*weiteW, y*hoeheW, null);
+		}else if(schwarzdameWahl==true) {										//wenn der stein gedrückt wird
+			g.drawImage(schwarzdamegewaehlt, x*weiteW, y*hoeheW, null);
+		}else if(weissdameWahl==true) {										//wenn der stein gedrückt wird
+			g.drawImage(weissdamegewaehlt, x*weiteW, y*hoeheW, null);
 		}
 	}
 
@@ -141,5 +150,29 @@ public class Feld {
 
 	public void setWeissDame(boolean weissdameFigur) {
 		this.weissdameFigur = weissdameFigur;
+	}
+
+	public boolean getFeldhinbewegen() {
+		return feldhinbewegen;
+	}
+
+	public void setFeldhinbewegen(boolean feldhinbewegen) {
+		this.feldhinbewegen = feldhinbewegen;
+	}
+
+	public boolean getSchwarzdameWahl() {
+		return schwarzdameWahl;
+	}
+
+	public void setSchwarzdameWahl(boolean schwarzdameWahl) {
+		this.schwarzdameWahl = schwarzdameWahl;
+	}
+
+	public boolean getWeissdameWahl() {
+		return weissdameWahl;
+	}
+
+	public void setWeissdameWahl(boolean weissdameWahl) {
+		this.weissdameWahl = weissdameWahl;
 	}
 }
