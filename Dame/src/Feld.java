@@ -62,19 +62,19 @@ public class Feld {
 	}
 
 	public void draw(Graphics g) {
-		if(leerFeld==true) {											//wenn das Feld leer ist
+		if(leerFeld==true) {													//wenn das Feld leer ist
 			if ((x+y)%2==0) {
 				g.drawImage(weiss, x*weiteW, y*hoeheW, null);
 			}else {
 				g.drawImage(schwarz, x*weiteW, y*hoeheW, null);
 			}
-		}else if(weissSpieler==true) {									//weißer stein drauf ist
+		}else if(weissSpieler==true) {											//weißer stein drauf ist
 			g.drawImage(weissstein, x*weiteW, y*hoeheW, null);
-		}else if(schwarzSpieler==true) {								//schwarzer stein drauf ist
+		}else if(schwarzSpieler==true) {										//schwarzer stein drauf ist
 			g.drawImage(schwarzstein, x*weiteW, y*hoeheW, null);
-		}else if(schwarzWahl==true) {									//wenn der stein gedrückt wird
+		}else if(schwarzWahl==true) {											//wenn der stein gedrückt wird
 			g.drawImage(schwarzgewaehlt, x*weiteW, y*hoeheW, null);
-		}else if(weissWahl==true) {										//wenn der stein gedrückt wird
+		}else if(weissWahl==true) {												//wenn der stein gedrückt wird
 			g.drawImage(weissgewaehlt, x*weiteW, y*hoeheW, null);
 		}else if(schwarzdameFigur==true) {										//wenn der stein gedrückt wird
 			g.drawImage(schwarzdame, x*weiteW, y*hoeheW, null);
@@ -84,7 +84,7 @@ public class Feld {
 			g.drawImage(feldbewegen, x*weiteW, y*hoeheW, null);
 		}else if(schwarzdameWahl==true) {										//wenn der stein gedrückt wird
 			g.drawImage(schwarzdamegewaehlt, x*weiteW, y*hoeheW, null);
-		}else if(weissdameWahl==true) {										//wenn der stein gedrückt wird
+		}else if(weissdameWahl==true) {											//wenn der stein gedrückt wird
 			g.drawImage(weissdamegewaehlt, x*weiteW, y*hoeheW, null);
 		}
 	}

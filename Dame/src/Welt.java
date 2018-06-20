@@ -30,7 +30,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	
 	private Screen screen;
 	
-	static JMenuItem dateiNew, dateiEnd, help;
+	static JMenuItem dateiNew, dateiEnd, dateiopt, sonstigeshigh, sonstigeshelp;
 	
 	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
 	private BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
@@ -54,13 +54,13 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	this.pack();
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(weiteFenster+getInsets().left-2,hoeheFenster+getInsets().top+menuhoehe-2);
-    	setLocationRelativeTo(null);						//setzt das Fenster in die mitte
+    	setLocationRelativeTo(null);				//setzt das Fenster in die mitte
     	menu();
     		
-    	this.setResizable(false);				//Änderung der Größe des Fensters wird deaktivert
-    	this.setVisible(true);					//Fenster wird sichtbar gemacht
+    	this.setResizable(false);					//Änderung der Größe des Fensters wird deaktivert
+    	this.setVisible(true);						//Fenster wird sichtbar gemacht
     	
-    	screen=new Screen();					//neues Objekt der Klasse Screen
+    	screen=new Screen();						//neues Objekt der Klasse Screen
 		add(screen);
     	
 		this.addMouseListener(this);
@@ -69,33 +69,36 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	}
 	
     public void menu() {
-    	JMenuBar bar = new JMenuBar();			//Menübar wird erzeugt
+    	JMenuBar bar = new JMenuBar();				//Menübar wird erzeugt
     	
-    	JMenu datei = new JMenu("Datei");		//Menuspalte wird erzeugt und Datei genannt
-    	JMenu high = new JMenu("Highscore");	//Menuspalte wird erzeugt und Highscore genannt
-    	JMenu opt = new JMenu("Optionen");		//Menuspalte wird erzeugt und Optionen genannt
-    	//JMenu help = new JMenu("Hilfe");			//Menuspalte wird erzeugt und Hilfe genannt
+    	JMenu datei = new JMenu("Datei");			//Menuspalte wird erzeugt 
+    	JMenu sonstiges = new JMenu("Sonstiges");	
     	
-    	dateiNew = new JMenuItem("Neues Spiel");	
+    	
+    	dateiNew = new JMenuItem("Neues Spiel");	//Menüpunkte werden erzeugt	
+    	dateiopt = new JMenuItem("Optionen");
     	dateiEnd = new JMenuItem("Beenden");
-    	help = new JMenuItem("Hilfe");
+    	sonstigeshigh = new JMenuItem("Highscore");
+    	sonstigeshelp = new JMenuItem("Hilfe");
     
     	
-    	datei.add(dateiNew);
+    	datei.add(dateiNew);						//Menüpunkt wird der Menüspalte eingefügt
+    	datei.add(dateiopt);
     	datei.add(dateiEnd);
+    	sonstiges.add(sonstigeshigh);
+    	sonstiges.add(sonstigeshelp);
     	
     	dateiEnd.addActionListener(this);			//Menüpunkt wird der Actionlistner hinzugefügt   
     	dateiNew.addActionListener(this);
-    	high.addActionListener(this);
-    	opt.addActionListener(this);
-    	help.addActionListener(this);
+    	sonstigeshigh.addActionListener(this);
+    	sonstiges.addActionListener(this);
+    	sonstigeshelp.addActionListener(this);
     	
-    	bar.add(datei);							//Menüspalten werden der Menüzeile hinzugefügt
-    	bar.add(high);								
-    	bar.add(opt);
-    	bar.add(help);
+    	bar.add(datei);								//Menüspalten werden der Menüzeile hinzugefügt								
+    	bar.add(sonstiges);
+
     	
-    	setJMenuBar(bar);						//Menü wird gesetzt
+    	setJMenuBar(bar);							//Menü wird gesetzt
     	
 
     }
@@ -201,7 +204,10 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			brett();							//Das Spielbrett wird neu gezeichnet
 			screen.repaint();
 		}
-		if(source.equals(help)) {
+		if(source.equals(sonstigeshigh)) {
+			Highscore highscore = new Highscore();
+		}
+		if(source.equals(sonstigeshelp)) {
 			Tutorial tutorial = new Tutorial();
 		}
 	}
