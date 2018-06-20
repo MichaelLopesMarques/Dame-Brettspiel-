@@ -153,7 +153,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		}
 	}
 	
-	public void draw(Graphics g) {			//hier wird fett gezeichnet
+	public void draw(Graphics g) {				//hier wird fett gezeichnet
 		for (int x=0;x<laengeFeld;x++) {		//Schleifen damit dann trotzdem eine NullPointException auftritt und es dann funkt
 			for (int y=0;y<breiteFeld;y++) {
 				feld[x][y].draw(g); 		//wird das Feld gezeichnet
