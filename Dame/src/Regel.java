@@ -92,17 +92,17 @@ public class Regel extends Welt{
 			System.out.println("weißer stein nehmen");
 			feld[xFeld][yFeld].setWeissSpieler(false);	
 			feld[xFeld][yFeld].setWeissWahl(true);
-			if((xFeld-2)>=0 && feld[xFeld-1][yFeld-1].getSchwarzSpieler()==true && feld[xFeld-2][yFeld-2].getLeerFeld()==true) {
+			if((xFeld-2)>=0 &&(yFeld-2)>=0 && feld[xFeld-1][yFeld-1].getSchwarzSpieler()==true && feld[xFeld-2][yFeld-2].getLeerFeld()==true) {
 				feld[xFeld-2][yFeld-2].setLeerFeld(false);
 				feld[xFeld-2][yFeld-2].setFeldhinbewegen(true);
-			}else if((xFeld-1)>=0 && feld[xFeld-1][yFeld-1].getLeerFeld()==true) {
+			}else if((xFeld-1)>=0 &&(yFeld-1)>=0 && feld[xFeld-1][yFeld-1].getLeerFeld()==true) {
 				feld[xFeld-1][yFeld-1].setLeerFeld(false);
 				feld[xFeld-1][yFeld-1].setFeldhinbewegen(true);
 			}
-			if((xFeld+2)<=7 && feld[xFeld+1][yFeld-1].getSchwarzSpieler()==true && feld[xFeld+2][yFeld-2].getLeerFeld()==true) {
+			if((xFeld+2)<=7 && (yFeld-2)>=0 && feld[xFeld+1][yFeld-1].getSchwarzSpieler()==true && feld[xFeld+2][yFeld-2].getLeerFeld()==true) {
 				feld[xFeld+2][yFeld-2].setLeerFeld(false);
 				feld[xFeld+2][yFeld-2].setFeldhinbewegen(true);
-			}else if((xFeld+1)<=7 && feld[xFeld+1][yFeld-1].getLeerFeld()==true) {
+			}else if((xFeld+1)<=7 && (yFeld-1)>=0 && feld[xFeld+1][yFeld-1].getLeerFeld()==true) {
 				feld[xFeld+1][yFeld-1].setLeerFeld(false);
 				feld[xFeld+1][yFeld-1].setFeldhinbewegen(true);
 			}
@@ -155,17 +155,17 @@ public class Regel extends Welt{
 		feld[xFeld][yFeld].setSchwarzSpieler(false);
 		feld[xFeld][yFeld].setSchwarzWahl(true);
 		wertSchwarz++;
-		if((xFeld+2)<=7 && feld[xFeld+1][yFeld+1].getWeissSpieler()==true && feld[xFeld+2][yFeld+2].getLeerFeld()==true) {
+		if((xFeld+2)<=7 && (yFeld+2)<=7 && feld[xFeld+1][yFeld+1].getWeissSpieler()==true && feld[xFeld+2][yFeld+2].getLeerFeld()==true) {
 			feld[xFeld+2][yFeld+2].setLeerFeld(false);
 			feld[xFeld+2][yFeld+2].setFeldhinbewegen(true);
-		}else if((xFeld+1)<=7 && feld[xFeld+1][yFeld+1].getLeerFeld()==true) {
+		}else if((xFeld+1)<=7 && (yFeld+1)<=7 && feld[xFeld+1][yFeld+1].getLeerFeld()==true) {
 			feld[xFeld+1][yFeld+1].setLeerFeld(false);
 			feld[xFeld+1][yFeld+1].setFeldhinbewegen(true);
 		}
-		if((xFeld-2)>=0 && feld[xFeld-1][yFeld+1].getWeissSpieler()==true && feld[xFeld-2][yFeld+2].getLeerFeld()==true) {
+		if((xFeld-2)>=0 && (yFeld+2)<=7 && feld[xFeld-1][yFeld+1].getWeissSpieler()==true && feld[xFeld-2][yFeld+2].getLeerFeld()==true) {
 			feld[xFeld-2][yFeld+2].setLeerFeld(false);
 			feld[xFeld-2][yFeld+2].setFeldhinbewegen(true);
-		}else if((xFeld-1)>=0 && feld[xFeld-1][yFeld+1].getLeerFeld()==true) {
+		}else if((xFeld-1)>=0 && (yFeld+1)<=7 && feld[xFeld-1][yFeld+1].getLeerFeld()==true) {
 			feld[xFeld-1][yFeld+1].setLeerFeld(false);
 			feld[xFeld-1][yFeld+1].setFeldhinbewegen(true);
 		}
