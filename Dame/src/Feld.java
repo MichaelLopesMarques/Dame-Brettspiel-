@@ -138,14 +138,14 @@ public class Feld {
 	}
 	
 	public boolean getSchwarzDame() {
-		return schwarzWahl;
+		return schwarzdameFigur;
 	}
 
 	public void setSchwarzDame(boolean schwarzdameFigur) {
 		this.schwarzdameFigur = schwarzdameFigur;
 	}
 	public boolean getWeissDame() {
-		return schwarzWahl;
+		return weissdameFigur;
 	}
 
 	public void setWeissDame(boolean weissdameFigur) {
