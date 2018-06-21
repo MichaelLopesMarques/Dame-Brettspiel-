@@ -17,14 +17,17 @@ public class Regel extends Welt{
 		System.out.println(yFeld+","+xFeld);
 		System.out.println(x+","+y);
 		
-		if(feld[xFeld][yFeld].getWeissSpieler()==true && wertWeiss==1 && wertSchwarz==0) {		//Bedingung um weissen Stein zu nehmen
+		if(feld[xFeld][yFeld].getWeissSpieler()==true && wertWeiss==1 && wertSchwarz==0) {			//Bedingung um weissen Stein zu nehmen
 			feld[xFeld][yFeld].setWeissSpieler(false);	
 			feld[xFeld][yFeld].setWeissWahl(true);
+			felderVorgabeOben();
 			weissNehmen();
 			return;
-		}else if(feld[xFeld][yFeld].getWeissDame()==true && wertWeiss==1 && wertSchwarz==0) {
+		}else if(feld[xFeld][yFeld].getWeissDame()==true && wertWeiss==1 && wertSchwarz==0) {		//Bedingung um weisse Dame zu nehmen
 			feld[xFeld][yFeld].setWeissDame(false);	
 			feld[xFeld][yFeld].setWeissdameWahl(true);
+			felderVorgabeOben();
+			felderVorgabeUnten();
 			weissNehmen();
 			return;
 		}
@@ -45,11 +48,19 @@ public class Regel extends Welt{
 			return;
 		}
 		
-		if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertWeiss==2) {	//Bedingung um weissen Stein zu setzen
+		if(feld[merkxwert][merkywert].getWeissWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertWeiss==2) {	//Bedingung um weissen Stein zu setzen
 			weissSetzen();
 			weissDamePruefen();
 			return;
-		}else if(wertWeiss==2 && (feld[xFeld][yFeld].getFeldhinbewegen()==false || (merkxwert-1)<0 || (merkxwert+1)>7 ||
+		}else if(feld[merkxwert][merkywert].getWeissdameWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertWeiss==2) {	//Bedingung um weissen Stein zu setzen
+			System.out.println("weisse dame setzen");
+			feld[xFeld][yFeld].setFeldhinbewegen(false);
+			feld[xFeld][yFeld].setWeissDame(true);
+			dameSetzen();
+			wertWeiss=0;
+			wertSchwarz++;
+			return;
+		} else if(wertWeiss==2 && (feld[xFeld][yFeld].getFeldhinbewegen()==false || (merkxwert-1)<0 || (merkxwert+1)>7 ||
 			!(feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1]||feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1]))){
 			feld[merkxwert][merkywert].setWeissWahl(false);
 			feld[merkxwert][merkywert].setWeissSpieler(true);
@@ -63,11 +74,14 @@ public class Regel extends Welt{
 		if(feld[xFeld][yFeld].getSchwarzSpieler()==true && wertWeiss==0 && wertSchwarz==1) {		//Bedingung um schwarzen Stein zu nehmen
 			feld[xFeld][yFeld].setSchwarzSpieler(false);
 			feld[xFeld][yFeld].setSchwarzWahl(true);
+			felderVorgabeUnten();
 			schwarzNehmen();
 			return;
 		}else if(feld[xFeld][yFeld].getSchwarzDame()==true && wertWeiss==0 && wertSchwarz==1) {
 			feld[xFeld][yFeld].setSchwarzDame(false);	
 			feld[xFeld][yFeld].setSchwarzdameWahl(true);
+			felderVorgabeUnten();
+			felderVorgabeOben();
 			schwarzNehmen();
 			return;
 		}
@@ -88,9 +102,17 @@ public class Regel extends Welt{
 			return;
 		}
 		
-		if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2) {		//Bedingung um schwarzen Stein zu setzen
+		if(feld[merkxwert][merkywert].getSchwarzWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2) {		//Bedingung um schwarzen Stein zu setzen
 			schwarzSetzen();
 			schwarzDamePruefen();
+			return;
+		}else if(feld[merkxwert][merkywert].getSchwarzdameWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2) {	//Bedingung um weissen Stein zu setzen
+			System.out.println("weisse dame setzen");
+			feld[xFeld][yFeld].setFeldhinbewegen(false);
+			feld[xFeld][yFeld].setSchwarzDame(true);
+			dameSetzen();
+			wertSchwarz=0;
+			wertWeiss++;
 			return;
 		}else if(wertSchwarz==2 && (feld[xFeld][yFeld].getFeldhinbewegen()==false || (merkxwert-1)<0 || (merkxwert+1)>7 ||
 				!(feld[xFeld][yFeld]==feld[merkxwert+1][merkywert+1]||feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1]))){
@@ -103,7 +125,13 @@ public class Regel extends Welt{
 	}
 
 	public static void weissNehmen() {
-			System.out.println("weißer stein nehmen");
+		System.out.println("weißer stein nehmen");
+		merkxwert=xFeld;
+		merkywert=yFeld;
+		wertWeiss++;
+	}
+	
+	public static void felderVorgabeOben() {					//Prüft, die Felder, wo man mach oben gehen kann	
 			if((xFeld-2)>=0 &&(yFeld-2)>=0 && feld[xFeld-1][yFeld-1].getSchwarzSpieler()==true && feld[xFeld-2][yFeld-2].getLeerFeld()==true) {
 				feld[xFeld-2][yFeld-2].setLeerFeld(false);
 				feld[xFeld-2][yFeld-2].setFeldhinbewegen(true);
@@ -118,9 +146,6 @@ public class Regel extends Welt{
 				feld[xFeld+1][yFeld-1].setLeerFeld(false);
 				feld[xFeld+1][yFeld-1].setFeldhinbewegen(true);
 			}
-			wertWeiss++;
-			merkxwert=xFeld;
-			merkywert=yFeld;
 	}
 	
 	public static void weissSetzen() {
@@ -165,7 +190,12 @@ public class Regel extends Welt{
 	
 	public static void schwarzNehmen() {
 		System.out.println("schwarzer stein nehmen");
+		merkxwert=xFeld;
+		merkywert=yFeld;
 		wertSchwarz++;
+	}
+	
+	public static void felderVorgabeUnten() {					//Prüft, die Felder, wo man mach unten gehen kann
 		if((xFeld+2)<=7 && (yFeld+2)<=7 && feld[xFeld+1][yFeld+1].getWeissSpieler()==true && feld[xFeld+2][yFeld+2].getLeerFeld()==true) {
 			feld[xFeld+2][yFeld+2].setLeerFeld(false);
 			feld[xFeld+2][yFeld+2].setFeldhinbewegen(true);
@@ -180,8 +210,6 @@ public class Regel extends Welt{
 			feld[xFeld-1][yFeld+1].setLeerFeld(false);
 			feld[xFeld-1][yFeld+1].setFeldhinbewegen(true);
 		}
-		merkxwert=xFeld;
-		merkywert=yFeld;
 	}
 	
 	public static void schwarzSetzen() {
@@ -257,5 +285,36 @@ public class Regel extends Welt{
 			feld[xFeld][7].setSchwarzSpieler(false);			//schwarz Figur wird entfernt
 			feld[xFeld][7].setSchwarzDame(true);				//schwarz Dame wird platziert
 		}
+	}
+	
+	public static void dameSetzen() {
+		if((merkxwert-1)>=0 && (merkxwert+1)<=7 && (merkywert-1)>=0 && (merkywert+1)<=7 && (feld[xFeld][yFeld]==feld[merkxwert+1][merkywert+1]||
+				feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1]||feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1]||
+				feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1])) {
+			damePlatzWechsel();
+		}else if((merkxwert-1)<0 && (merkywert-1)>=0 && (merkywert+1)<=7 && (feld[xFeld][yFeld]==feld[merkxwert+1][merkywert+1]||
+				feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1])) {
+			damePlatzWechsel();
+		}else if((merkxwert+1)>7 && (merkywert-1)>=0 && (merkywert+1)<=7 && (feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1]||
+				feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1])) {
+			damePlatzWechsel();
+		}else if((merkywert-1)<0 && (merkxwert-1)>=0 && (merkxwert+1)<=7 && (merkywert+1)<=7 && (feld[xFeld][yFeld]==feld[merkxwert+1][merkywert+1]||
+				feld[xFeld][yFeld]==feld[merkxwert-1][merkywert+1])) {
+			damePlatzWechsel();
+		}else if((merkywert+1)>7 && (merkxwert-1)>=0 && (merkxwert+1)<=7 && (feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1]||
+				feld[xFeld][yFeld]==feld[merkxwert-1][merkywert-1])) {
+			damePlatzWechsel();
+		}else if((merkxwert-1)<0 && (merkxwert+1)>7 && feld[xFeld][yFeld]==feld[merkxwert+1][merkywert+1]) {
+			damePlatzWechsel();
+		}else if((merkywert+1)>7 && (merkxwert-1)<0 && (merkxwert+1)<=7 && feld[xFeld][yFeld]==feld[merkxwert+1][merkywert-1]) {
+			damePlatzWechsel();
+		}
+		vordefiniertEntfernen();
+	}
+	
+	public static void damePlatzWechsel() {
+		feld[merkxwert][merkywert].setWeissdameWahl(false);
+		feld[merkxwert][merkywert].setLeerFeld(true);
+		return;
 	}
 }
