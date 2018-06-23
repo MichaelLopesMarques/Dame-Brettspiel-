@@ -22,7 +22,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	protected static int laengeFeld=8;
 	protected static int breiteFeld=8;
 	
-	private static int weiteFenster = 800;
+	private static int weiteFenster = 1000;
 	private static int hoeheFenster = 800;
 	private int menuhoehe=23;
 	
