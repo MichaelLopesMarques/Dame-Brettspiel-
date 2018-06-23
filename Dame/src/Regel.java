@@ -37,7 +37,7 @@ public class Regel extends Welt{
 			}
 		
 			if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertWeiss==2 && merkxwert-1>=0 &&
-					feld[merkxwert-1][merkywert-1].getSchwarzSpieler()==true) {		//Bedingung für Springen nach links bei weiss
+					feld[merkxwert-1][merkywert-1].getSchwarzSpieler()==true && feld[xFeld+2][yFeld+2].getWeissWahl()==true) {		//Bedingung für Springen nach links bei weiss
 				weissPlatzWechsel();
 				weissSpringen();
 				feld[merkxwert-1][merkywert-1].setSchwarzSpieler(false);																	//der übersprungene Stein wird ausgetauscht
@@ -45,7 +45,7 @@ public class Regel extends Welt{
 				weissDamePruefen();
 				return;
 			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertWeiss==2 && merkxwert+1<=7 &&		
-					feld[merkxwert+1][merkywert-1].getSchwarzSpieler()==true) {		//Bedingung für Springen nach rechts bei weiss
+					feld[merkxwert+1][merkywert-1].getSchwarzSpieler()==true && feld[xFeld-2][yFeld+2].getWeissWahl()==true) {		//Bedingung für Springen nach rechts bei weiss
 				weissPlatzWechsel();
 				weissSpringen();
 				feld[merkxwert+1][merkywert-1].setSchwarzSpieler(false);
@@ -102,7 +102,7 @@ public class Regel extends Welt{
 			}
 		
 			if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2 && (merkxwert+1)<=7 &&
-					feld[merkxwert+1][merkywert+1].getWeissSpieler()==true) {				//Bedingung für Springen nach rechts bei schwarz
+					feld[merkxwert+1][merkywert+1].getWeissSpieler()==true && feld[xFeld-2][yFeld-2].getSchwarzWahl()==true) {				//Bedingung für Springen nach rechts bei schwarz
 				schwarzPlatzWechsel();
 				schwarzSpringen();
 				feld[merkxwert+1][merkywert+1].setWeissSpieler(false);																			//überspringbarer Stein wird ausgetauscht
@@ -110,7 +110,7 @@ public class Regel extends Welt{
 				schwarzDamePruefen();
 				return;
 			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2 && (merkxwert-1)>=0 &&
-					feld[merkxwert-1][merkywert+1].getWeissSpieler()==true) {				//Bedingung für Springen nach links bei schwarz
+					feld[merkxwert-1][merkywert+1].getWeissSpieler()==true && feld[xFeld+2][yFeld-2].getSchwarzWahl()==true) {				//Bedingung für Springen nach links bei schwarz
 				schwarzPlatzWechsel();
 				schwarzSpringen();
 				feld[merkxwert-1][merkywert+1].setWeissSpieler(false);
