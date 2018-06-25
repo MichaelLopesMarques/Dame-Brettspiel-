@@ -36,57 +36,35 @@ public class Regel extends Welt{
 				return;
 			}
 		
-			if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getWeissWahl()==true && wertWeiss==2 && 
+			if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertWeiss==2 && 
 					(merkxwert-2)>=0 && (merkywert-2)>=0 && feld[merkxwert-1][merkywert-1].getSchwarzSpieler()==true && 
 					feld[xFeld][yFeld]==feld[merkxwert-2][merkywert-2]) {																	//Bedingung für Springen nach links bei weiss
-				weissPlatzWechsel();
+				if(feld[merkxwert][merkywert].getWeissWahl()==true) {
+					weissPlatzWechsel();
+				}else if(feld[merkxwert][merkywert].getWeissdameWahl()==true) {
+					weissDamePlatzWechsel();
+				}else if(feld[merkxwert][merkywert].getSchwarzdameWahl()==true) {
+					schwarzDamePlatzWechsel();
+				}
 				weissSpringen();
 				feld[merkxwert-1][merkywert-1].setSchwarzSpieler(false);																	//der übersprungene Stein wird ausgetauscht
 				feld[merkxwert-1][merkywert-1].setLeerFeld(true);																			//durch ein leeres Feld, da der Stein nicht mehr vorhanden ist
 				weissDamePruefen();
 				return;
-			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getWeissWahl()==true && wertWeiss==2 && 
+			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertWeiss==2 && 
 					(merkxwert+2)<=7 && (merkywert-2)>=0 && feld[merkxwert+1][merkywert-1].getSchwarzSpieler()==true && 
 					feld[xFeld][yFeld]==feld[merkxwert+2][merkywert-2]) {																	//Bedingung für Springen nach rechts bei weiss
-				weissPlatzWechsel();
+				if(feld[merkxwert][merkywert].getWeissWahl()==true) {
+					weissPlatzWechsel();
+				}else if(feld[merkxwert][merkywert].getWeissdameWahl()==true) {
+					weissDamePlatzWechsel();
+				}else if(feld[merkxwert][merkywert].getSchwarzdameWahl()==true) {
+					schwarzDamePlatzWechsel();
+				}
 				weissSpringen();
 				feld[merkxwert+1][merkywert-1].setSchwarzSpieler(false);
 				feld[merkxwert+1][merkywert-1].setLeerFeld(true);
 				weissDamePruefen();
-				return;
-			}
-			
-			if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getWeissdameWahl()==true && wertWeiss==2 && 
-					(merkxwert-2)>=0 && (merkywert-2)>=0 && feld[merkxwert-1][merkywert-1].getSchwarzSpieler()==true && 
-					feld[xFeld][yFeld]==feld[merkxwert-2][merkywert-2]) {																	//Bedingung für Springen nach links bei weiss
-				weissDamePlatzWechsel();
-				weissSpringen();
-				feld[merkxwert-1][merkywert-1].setSchwarzSpieler(false);																	//der übersprungene Stein wird ausgetauscht
-				feld[merkxwert-1][merkywert-1].setLeerFeld(true);																			//durch ein leeres Feld, da der Stein nicht mehr vorhanden ist
-				return;
-			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getWeissdameWahl()==true && wertWeiss==2 && 
-					(merkxwert+2)<=7 && (merkywert-2)>=0 && feld[merkxwert+1][merkywert-1].getSchwarzSpieler()==true && 
-					feld[xFeld][yFeld]==feld[merkxwert+2][merkywert-2]) {																	//Bedingung für Springen nach rechts bei weiss
-				weissDamePlatzWechsel();
-				weissSpringen();
-				feld[merkxwert+1][merkywert-1].setSchwarzSpieler(false);
-				feld[merkxwert+1][merkywert-1].setLeerFeld(true);
-				return;
-			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getWeissdameWahl()==true && wertWeiss==2 && 
-					(merkxwert-2)>0 && (merkywert-2)<=7 && feld[merkxwert-1][merkywert+1].getSchwarzSpieler()==true && 
-					feld[xFeld][yFeld]==feld[merkxwert-2][merkywert+2]) {																	//Bedingung für Springen nach rechts bei weiss
-				weissDamePlatzWechsel();
-				weissSpringen();
-				feld[merkxwert-1][merkywert+1].setSchwarzSpieler(false);
-				feld[merkxwert-1][merkywert+1].setLeerFeld(true);
-				return;
-			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getWeissdameWahl()==true && wertWeiss==2 && 
-					(merkxwert+2)<=7 && (merkywert+2)<=7 && feld[merkxwert+1][merkywert+1].getSchwarzSpieler()==true && 
-					feld[xFeld][yFeld]==feld[merkxwert+2][merkywert+2]) {																	//Bedingung für Springen nach rechts bei weiss
-				weissDamePlatzWechsel();
-				weissSpringen();
-				feld[merkxwert+1][merkywert+1].setSchwarzSpieler(false);
-				feld[merkxwert+1][merkywert+1].setLeerFeld(true);
 				return;
 			}
 		
@@ -138,53 +116,36 @@ public class Regel extends Welt{
 				return;
 			}
 		
-			if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getSchwarzWahl()==true && wertSchwarz==2 && (merkxwert+2)<=7 && 
+			if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2 && (merkxwert+2)<=7 && 
 					(merkywert+2)<=7 && feld[merkxwert+1][merkywert+1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert+2][merkywert+2]) {				//Bedingung für Springen nach rechts bei schwarz
-				schwarzPlatzWechsel();
+				if(feld[merkxwert][merkywert].getSchwarzWahl()==true) {
+					weissPlatzWechsel();
+				}else if(feld[merkxwert][merkywert].getWeissdameWahl()==true) {
+					weissDamePlatzWechsel();
+				}else if(feld[merkxwert][merkywert].getSchwarzdameWahl()==true) {
+					schwarzDamePlatzWechsel();
+				}
 				schwarzSpringen();
 				feld[merkxwert+1][merkywert+1].setWeissSpieler(false);																			//überspringbarer Stein wird ausgetauscht
 				feld[merkxwert+1][merkywert+1].setLeerFeld(true);																				//durch ein leeres Feld
 				schwarzDamePruefen();
 				return;
-			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getSchwarzWahl()==true && wertSchwarz==2 && (merkxwert-2)>=0 && 
+			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2 && (merkxwert-2)>=0 && 
 					(merkywert+2)<=7 && feld[merkxwert-1][merkywert+1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert-2][merkywert+2]) {				//Bedingung für Springen nach links bei schwarz
-				schwarzPlatzWechsel();
+				if(feld[merkxwert][merkywert].getSchwarzWahl()==true) {
+					weissPlatzWechsel();
+				}else if(feld[merkxwert][merkywert].getWeissdameWahl()==true) {
+					weissDamePlatzWechsel();
+				}else if(feld[merkxwert][merkywert].getSchwarzdameWahl()==true) {
+					schwarzDamePlatzWechsel();
+				}
 				schwarzSpringen();
 				feld[merkxwert-1][merkywert+1].setWeissSpieler(false);
 				feld[merkxwert-1][merkywert+1].setLeerFeld(true);
 				schwarzDamePruefen();
 				return;
 			}
-			
-			if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getSchwarzdameWahl()==true && wertSchwarz==2 && (merkxwert+2)<=7 && 
-					(merkywert+2)<=7 && feld[merkxwert+1][merkywert+1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert+2][merkywert+2]) {				//Bedingung für Springen nach rechts bei schwarz
-				schwarzDamePlatzWechsel();
-				schwarzSpringen();
-				feld[merkxwert+1][merkywert+1].setWeissSpieler(false);																			//überspringbarer Stein wird ausgetauscht
-				feld[merkxwert+1][merkywert+1].setLeerFeld(true);																				//durch ein leeres Feld
-				return;
-			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getSchwarzdameWahl()==true && wertSchwarz==2 && (merkxwert-2)>=0 && 
-					(merkywert+2)<=7 && feld[merkxwert-1][merkywert+1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert-2][merkywert+2]) {				//Bedingung für Springen nach links bei schwarz
-				schwarzDamePlatzWechsel();
-				schwarzSpringen();
-				feld[merkxwert-1][merkywert+1].setWeissSpieler(false);
-				feld[merkxwert-1][merkywert+1].setLeerFeld(true);
-				return;
-			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getSchwarzdameWahl()==true && wertSchwarz==2 && (merkxwert+2)<=7 && 
-					(merkywert-2)>=0 && feld[merkxwert+1][merkywert-1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert+2][merkywert-2]) {				//Bedingung für Springen nach links bei schwarz
-				schwarzDamePlatzWechsel();
-				schwarzSpringen();
-				feld[merkxwert+1][merkywert-1].setWeissSpieler(false);
-				feld[merkxwert+1][merkywert-1].setLeerFeld(true);
-				return;
-			}else if(feld[xFeld][yFeld].getFeldhinbewegen()==true && feld[merkxwert][merkywert].getSchwarzdameWahl()==true && wertSchwarz==2 && (merkxwert-2)>=0 && 
-					(merkywert-2)>=0 && feld[merkxwert-1][merkywert-1].getWeissSpieler()==true && feld[xFeld][yFeld]==feld[merkxwert-2][merkywert-2]) {				//Bedingung für Springen nach links bei schwarz
-				schwarzDamePlatzWechsel();
-				schwarzSpringen();
-				feld[merkxwert-1][merkywert-1].setWeissSpieler(false);
-				feld[merkxwert-1][merkywert-1].setLeerFeld(true);
-				return;
-			}
+
 		
 			if(feld[merkxwert][merkywert].getSchwarzWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2 && kannspringen==false) {			//Bedingung um schwarzen Stein zu setzen
 				System.out.println("schwarzer stein setzen");
@@ -300,7 +261,7 @@ public class Regel extends Welt{
 	
 	
 	public static void felderVorgabeOben() {																									//Prüft, die Felder, wo man mach oben gehen kann	
-		if(feld[xFeld][yFeld].getWeissWahl()==true) {
+		if(feld[xFeld][yFeld].getWeissWahl()==true||feld[xFeld][yFeld].getWeissdameWahl()==true) {
 			if((xFeld-2)>=0 &&(yFeld-2)>=0 && feld[xFeld-1][yFeld-1].getSchwarzSpieler()==true && feld[xFeld-2][yFeld-2].getLeerFeld()==true) {		//prüft, ob man über einen Stein nach links oben springen kann
 				feld[xFeld-2][yFeld-2].setLeerFeld(false);																							//setzt das leere Feld auf
 				feld[xFeld-2][yFeld-2].setFeldhinbewegen(true);																						//das vordefinierte Feld
@@ -323,18 +284,18 @@ public class Regel extends Welt{
 				kannspringen=true;
 			}
 		}
-		if((xFeld-1)>=0 &&(yFeld-1)>=0 && feld[xFeld-1][yFeld-1].getLeerFeld()==true  && kannspringen==false) {								//prüft, ob man nach links oben gehen kann
+		if((xFeld-1)>=0 &&(yFeld-1)>=0 && feld[xFeld-1][yFeld-1].getLeerFeld()==true) {								//prüft, ob man nach links oben gehen kann
 			feld[xFeld-1][yFeld-1].setLeerFeld(false);
 			feld[xFeld-1][yFeld-1].setFeldhinbewegen(true);
 		}
-		if((xFeld+1)<=7 && (yFeld-1)>=0 && feld[xFeld+1][yFeld-1].getLeerFeld()==true && kannspringen==false) {								//prüft, on man nach rechts oben gehen kann
+		if((xFeld+1)<=7 && (yFeld-1)>=0 && feld[xFeld+1][yFeld-1].getLeerFeld()==true) {								//prüft, on man nach rechts oben gehen kann
 			feld[xFeld+1][yFeld-1].setLeerFeld(false);
 			feld[xFeld+1][yFeld-1].setFeldhinbewegen(true);
 		}
 	}
 	
 	public static void felderVorgabeUnten() {																									//Prüft, die Felder, wo man mach unten gehen kann
-		if(feld[xFeld][yFeld].getSchwarzWahl()==true) {
+		if(feld[xFeld][yFeld].getSchwarzWahl()==true||feld[xFeld][yFeld].getSchwarzdameWahl()==true) {
 			if((xFeld+2)<=7 && (yFeld+2)<=7 && feld[xFeld+1][yFeld+1].getWeissSpieler()==true && feld[xFeld+2][yFeld+2].getLeerFeld()==true) {
 				feld[xFeld+2][yFeld+2].setLeerFeld(false);
 				feld[xFeld+2][yFeld+2].setFeldhinbewegen(true);
@@ -357,11 +318,11 @@ public class Regel extends Welt{
 				kannspringen=true;
 			}
 		}
-		if((xFeld+1)<=7 && (yFeld+1)<=7 && feld[xFeld+1][yFeld+1].getLeerFeld()==true && kannspringen==false) {
+		if((xFeld+1)<=7 && (yFeld+1)<=7 && feld[xFeld+1][yFeld+1].getLeerFeld()==true) {
 			feld[xFeld+1][yFeld+1].setLeerFeld(false);
 			feld[xFeld+1][yFeld+1].setFeldhinbewegen(true);
 		}
-		if((xFeld-1)>=0 && (yFeld+1)<=7 && feld[xFeld-1][yFeld+1].getLeerFeld()==true && kannspringen ==false) {
+		if((xFeld-1)>=0 && (yFeld+1)<=7 && feld[xFeld-1][yFeld+1].getLeerFeld()==true) {
 			feld[xFeld-1][yFeld+1].setLeerFeld(false);
 			feld[xFeld-1][yFeld+1].setFeldhinbewegen(true);
 		}
