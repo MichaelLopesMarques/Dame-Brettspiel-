@@ -14,6 +14,8 @@ import javax.swing.SwingUtilities;
 import java.awt.Point;
 
 import java.awt.image.BufferedImage;
+import java.util.Timer;
+import java.util.TimerTask;
 
 public class Welt extends JFrame implements MouseListener, ActionListener{
 	
@@ -29,6 +31,10 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	protected static Feld[][] feld;
 	
 	private Screen screen;
+	
+	private Timer timer;
+	private TimerTask timertask;
+	private int zeit=0;
 	
 	static JMenuItem dateiNew, dateiEnd, dateiopt, sonstigeshigh, sonstigeshelp;
 	
@@ -161,6 +167,19 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		}
 		
 	}
+	
+	public void timer() {
+		timer=new Timer();									//neuer Timer wird erstellt
+		timertask = new TimerTask() {						//neuer Timertask wird erstellt
+			@Override
+			public void run() {								//dadrin ist die Methode run
+				zeit++;
+				System.out.println(zeit);
+			}
+			
+		};	
+
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -185,6 +204,10 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		if(SwingUtilities.isLeftMouseButton(e)){
 			Regel.klicklinks(e.getX()-getInsets().left, e.getY()-getInsets().top-menuhoehe);
 			screen.repaint();
+			if(zeit==0) {												//wenn die Sekundezahl auf 0 ist
+				timer();														//dann wird die Methode Timer gesetzt
+				timer.scheduleAtFixedRate(timertask, 0, 1000);					//timer soll jetzt im sekundentakt hochlaufen
+			}
 		}
 	}
 
