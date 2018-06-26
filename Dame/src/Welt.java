@@ -6,6 +6,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
@@ -38,6 +39,9 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	
 	static JMenuItem dateiNew, dateiEnd, dateiopt, sonstigeshigh, sonstigeshelp;
 	
+	public JLabel amZug = new JLabel();
+	public JLabel stoppuhr = new JLabel();
+	
 	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
 	private BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
@@ -66,12 +70,21 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	this.setResizable(false);					//Änderung der Größe des Fensters wird deaktivert
     	this.setVisible(true);						//Fenster wird sichtbar gemacht
     	
+    	stoppuhr.setBounds(810, 5, 180, 20);
+    	this.add(stoppuhr);
+    	amZug.setText("Weiss ist am Zug");
+    	amZug.setBounds(810, 35, 180, 20);
+    	amZug.setOpaque(true);
+    	amZug.setBackground(Color.WHITE);
+    	this.add(amZug);
+    	
     	screen=new Screen();						//neues Objekt der Klasse Screen
 		add(screen);
     	
 		this.addMouseListener(this);
-		
+
     	brett();
+
 	}
 	
     public void menu() {
@@ -108,7 +121,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	
 
     }
-    
+
 	public void brett() {
 		int z=0;
     
@@ -175,6 +188,8 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			public void run() {								//dadrin ist die Methode run
 				zeit++;
 				System.out.println(zeit);
+		    	stoppuhr.setText("Zeit: " + Integer.toString(zeit));
+				screen.repaint();
 			}
 			
 		};	
