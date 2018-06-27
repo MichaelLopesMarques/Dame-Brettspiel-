@@ -3,8 +3,8 @@ public class Regel extends Welt{
 
 	private static final long serialVersionUID = 1L;
 
-	private static int wertWeiss=1;				//0 = weisser spieler nicht dran   1 = weiss spieler dran    2 = weisser stein genommen
-	private static int wertSchwarz=0;
+	public static int wertWeiss=1;				//0 = weisser spieler nicht dran   1 = weiss spieler dran    2 = weisser stein genommen
+	public static int wertSchwarz=0;
 	
 	private static int merkxwert;				//x-Feld wird hier drin gespeichert
 	private static int merkywert;				//y-Feld wird hier drin gespeichert

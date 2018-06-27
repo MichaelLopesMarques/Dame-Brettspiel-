@@ -42,6 +42,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	
 	public JLabel amZug = new JLabel();
 	public JLabel stoppuhr = new JLabel();
+	public JLabel schlagzwang = new JLabel();
 	
 	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
 	private BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
@@ -80,6 +81,10 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	amZug.setBounds(810, 200, 180, 80);
     	amZug.setOpaque(true);
     	this.add(amZug);
+    	schlagzwang.setFont(font);
+    	schlagzwang.setBounds(810, 300, 180, 80);
+    	this.add(schlagzwang);
+    	
     	
     	screen=new Screen();						//neues Objekt der Klasse Screen
 		add(screen);
@@ -183,6 +188,13 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	    		amZug.setForeground(Color.WHITE);
 	    		amZug.setText("<html><body>Schwarz<br>am Zug</html>");
 	    		amZug.repaint();
+	    	}
+	    	if(Regel.kannspringen == true) {
+	    		schlagzwang.setText("Schlagzwang!");
+	    		schlagzwang.repaint();
+	    	}else {
+	    		schlagzwang.setText("Beliebiger Zug");
+	    		schlagzwang.repaint();
 	    	}
 		}
 	}

@@ -23,6 +23,7 @@ public class Start extends JFrame implements MouseListener, ActionListener{
     	this.setSize(400,400);
         
     	Font font = new Font("Tw Cen MT Condensed Extra Bold",0,24);
+    	
         single = new JButton("Singleplayer");	//Name des neuen Buttons + Beschreibung 
         single.setBounds(120,40,160,40);		//Position + Größe des Buttons 
         single.setFont(font);
