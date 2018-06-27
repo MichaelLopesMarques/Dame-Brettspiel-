@@ -1,5 +1,6 @@
 import javax.swing.JFrame;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
@@ -21,20 +22,25 @@ public class Start extends JFrame implements MouseListener, ActionListener{
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(400,400);
         
+    	Font font = new Font("Tw Cen MT Condensed Extra Bold",0,24);
         single = new JButton("Singleplayer");	//Name des neuen Buttons + Beschreibung 
         single.setBounds(120,40,160,40);		//Position + Größe des Buttons 
+        single.setFont(font);
         this.add(single);						//Button wird hinzugefügt
         
         multi = new JButton("Multiplayer");
         multi.setBounds(120,110,160,40);
+        multi.setFont(font);
         this.add(multi);
 
         tut = new JButton("Tutorial");
         tut.setBounds(120,180,160,40);
+        tut.setFont(font);
         this.add(tut);
         
         end = new JButton("Beenden");
         end.setBounds(120,250,160,40);
+        end.setFont(font);
         this.add(end); 
         
 

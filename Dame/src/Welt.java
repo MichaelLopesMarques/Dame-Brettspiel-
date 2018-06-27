@@ -1,4 +1,5 @@
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -70,12 +71,14 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	this.setResizable(false);					//Änderung der Größe des Fensters wird deaktivert
     	this.setVisible(true);						//Fenster wird sichtbar gemacht
     	
-    	stoppuhr.setBounds(810, 55, 180, 20);
+    	Font font = new Font("Tw Cen MT Condensed Extra Bold",0,24);
+    	
+    	stoppuhr.setFont(font);
+    	stoppuhr.setBounds(810, 100, 180, 80);
     	this.add(stoppuhr);
-    	amZug.setText("Weiss ist am Zug");
-    	amZug.setBounds(810, 135, 180, 20);
+    	amZug.setFont(font);
+    	amZug.setBounds(810, 200, 180, 80);
     	amZug.setOpaque(true);
-    	amZug.setBackground(Color.WHITE);
     	this.add(amZug);
     	
     	screen=new Screen();						//neues Objekt der Klasse Screen
@@ -170,6 +173,17 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		public void paintComponent(Graphics g) {		//Überschreiben der Methode paintComponet in JPanel
 			draw(g); 		//wird das Feld gezeichnet						//die welt wird gezeichnet
 			stoppuhr.repaint();
+	    	if(Regel.getWertWeiss() > 0 && Regel.getWertSchwarz() == 0) {
+	    		amZug.setBackground(Color.WHITE);
+	    		amZug.setForeground(Color.BLACK);
+	    		amZug.setText("<html><body>Weiss<br>am Zug</html>");
+	    		amZug.repaint();
+	    	}else if(Regel.getWertWeiss() == 0 && Regel.getWertSchwarz() > 0) {
+	    		amZug.setBackground(Color.BLACK);
+	    		amZug.setForeground(Color.WHITE);
+	    		amZug.setText("<html><body>Schwarz<br>am Zug</html>");
+	    		amZug.repaint();
+	    	}
 		}
 	}
 	

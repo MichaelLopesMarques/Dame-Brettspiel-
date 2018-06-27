@@ -386,4 +386,13 @@ public class Regel extends Welt{
 			feld[merkxwert-2][merkywert+2].setLeerFeld(true);
 		}
 	}
+	
+	public static int getWertWeiss() {
+		return wertWeiss;
+	}
+	
+	public static int getWertSchwarz() {
+		return wertSchwarz;
+	}
+
 }
