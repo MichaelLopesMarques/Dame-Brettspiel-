@@ -70,10 +70,10 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	this.setResizable(false);					//Änderung der Größe des Fensters wird deaktivert
     	this.setVisible(true);						//Fenster wird sichtbar gemacht
     	
-    	stoppuhr.setBounds(810, 5, 180, 20);
+    	stoppuhr.setBounds(810, 55, 180, 20);
     	this.add(stoppuhr);
     	amZug.setText("Weiss ist am Zug");
-    	amZug.setBounds(810, 35, 180, 20);
+    	amZug.setBounds(810, 135, 180, 20);
     	amZug.setOpaque(true);
     	amZug.setBackground(Color.WHITE);
     	this.add(amZug);
@@ -169,6 +169,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		@Override
 		public void paintComponent(Graphics g) {		//Überschreiben der Methode paintComponet in JPanel
 			draw(g); 		//wird das Feld gezeichnet						//die welt wird gezeichnet
+			stoppuhr.repaint();
 		}
 	}
 	
@@ -188,8 +189,8 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			public void run() {								//dadrin ist die Methode run
 				zeit++;
 				System.out.println(zeit);
-		    	stoppuhr.setText("Zeit: " + Integer.toString(zeit));
-				screen.repaint();
+		    	stoppuhr.setText("Zeit: " + zeit);
+				//screen.repaint();
 			}
 			
 		};	
@@ -219,7 +220,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		if(SwingUtilities.isLeftMouseButton(e)){
 			Regel.klicklinks(e.getX()-getInsets().left, e.getY()-getInsets().top-menuhoehe);
 			screen.repaint();
-			if(zeit==0) {												//wenn die Sekundezahl auf 0 ist
+			if(zeit==0) {														//wenn die zeit auf 0 ist
 				timer();														//dann wird die Methode Timer gesetzt
 				timer.scheduleAtFixedRate(timertask, 0, 1000);					//timer soll jetzt im sekundentakt hochlaufen
 			}
