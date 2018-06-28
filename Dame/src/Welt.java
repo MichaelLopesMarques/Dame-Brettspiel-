@@ -16,6 +16,7 @@ import javax.swing.SwingUtilities;
 import java.awt.Point;
 
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -270,7 +271,12 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			screen.repaint();
 		}
 		if(source.equals(sonstigeshigh)) {
-			Highscore highscore = new Highscore();
+			try {
+				Highscore highscore = new Highscore();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 		if(source.equals(sonstigeshelp)) {
 			Tutorial tutorial = new Tutorial();
