@@ -17,6 +17,7 @@ import java.awt.Point;
 
 import java.awt.image.BufferedImage;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -273,8 +274,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		if(source.equals(sonstigeshigh)) {
 			try {
 				Highscore highscore = new Highscore();
-			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
+			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 		}

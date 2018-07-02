@@ -1,8 +1,13 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Comparator;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -10,14 +15,14 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Highscore extends JFrame {
+public class Highscore extends JFrame implements ActionListener {
 		
 	private JLabel platz = new JLabel();
 	private JLabel score = new JLabel();
 	private JLabel name = new JLabel();
 	private JLabel farbe = new JLabel();
 	
-	private JTextField textfeld = new JTextField();
+	private static JTextField textfeld = new JTextField();
 	public static JButton save = new JButton();
 	
 	private JLabel platz1 = new JLabel();
@@ -36,7 +41,9 @@ public class Highscore extends JFrame {
 	private JLabel farbe2 = new JLabel();
 	private JLabel farbe3 = new JLabel();
 
-		public Highscore() throws FileNotFoundException{ 			// was hoch riskantes passiert hier
+	public Highscore() throws IOException{ 			// was hoch riskantes passiert hier
+			
+			
 		this.setTitle("Highscore");									//Einstellungen für das Fenster
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	this.setSize(580,500);
@@ -110,7 +117,7 @@ public class Highscore extends JFrame {
         this.add(platz3);
         
         name3.setBounds(180, 24, 100, 300);
-        name3.setText("Schachprofi");
+        //name3.setText("Schachprofi");
         name3.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(name3);
         
@@ -130,10 +137,22 @@ public class Highscore extends JFrame {
         
         save.setBounds(200, 416, 113, 41);
         save.setText("Speichern");
+        save.addActionListener(this);
+        save.setActionCommand("save");
         this.add(save);
         
-        FileReader fr = new FileReader("highscore.txt");		//Text Datei wird gelesen
-        BufferedReader br = new BufferedReader(fr);
+        
+        BufferedReader in = new BufferedReader(new FileReader("highscore.txt"));		//Text Datei wird gelesen
+        
+        BufferedWriter out = new BufferedWriter(new FileWriter("highscore.txt")); 		//Um in die Text Datei schreiben zu können 
         
 		}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if(e.getActionCommand().equals("save")) {
+			
+		}
+		
+	}
 }
