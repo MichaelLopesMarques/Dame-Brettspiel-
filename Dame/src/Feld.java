@@ -25,11 +25,11 @@ public class Feld {
 	private boolean schwarzdameWahl;
 	private boolean weissdameWahl;
 	
-	private BufferedImage weiss, schwarz, weissstein, schwarzstein, schwarzgewaehlt,weissgewaehlt,schwarzdame,weissdame, feldbewegen, schwarzdamegewaehlt, weissdamegewaehlt;
+	private BufferedImage weiss, schwarz, weissstein, schwarzstein, schwarzgewaehlt,weissgewaehlt,schwarzdame,weissdame, feldbewegen, schwarzdamegewaehlt, weissdamegewaehlt,dametitel;
 	
 	public Feld(int x, int y,BufferedImage weiss,BufferedImage schwarz,BufferedImage weissstein,
 			BufferedImage schwarzstein,BufferedImage schwarzgewaehlt,BufferedImage weissgewaehlt,BufferedImage schwarzdame, BufferedImage weissdame,
-			BufferedImage feldbewegen, BufferedImage schwarzdamegewaehlt, BufferedImage weissdamegewaehlt) {
+			BufferedImage feldbewegen, BufferedImage schwarzdamegewaehlt, BufferedImage weissdamegewaehlt, BufferedImage dametitel) {
 		this.x=x;
 		this.y=y;
 		this.weiss=weiss;
@@ -43,6 +43,7 @@ public class Feld {
 		this.feldbewegen=feldbewegen;
 		this.schwarzdamegewaehlt=schwarzdamegewaehlt;
 		this.weissdamegewaehlt=weissdamegewaehlt;
+		this.dametitel=dametitel;
 	}
 	
 	public void setWeiss(BufferedImage weiss) {
@@ -61,7 +62,12 @@ public class Feld {
 		this.schwarzstein=schwarzstein;
 	}
 
+	public void setDametitel(BufferedImage dametitel) {
+		this.dametitel=dametitel;
+	}
+	
 	public void draw(Graphics g) {
+		g.drawImage(dametitel, 800, 0, 200, 100, null);
 		if(leerFeld==true) {													//wenn das Feld leer ist
 			if ((x+y)%2==0) {
 				g.drawImage(weiss, x*weiteW, y*hoeheW, null);
