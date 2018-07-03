@@ -1,6 +1,7 @@
 package Dame;
 import javax.swing.JFrame;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Toolkit;
@@ -39,7 +40,7 @@ public class Start extends JFrame implements MouseListener, ActionListener{
     
 	public void paint(Graphics g){
 		//super.paint(g);
-		g.drawImage(Toolkit.getDefaultToolkit().getImage("bilder/Start.png"),0,50,400,400,this);	//Grafik wird ins Fenster eingefügt
+		g.drawImage(Toolkit.getDefaultToolkit().getImage("bilder/Start.png"),0,23,400,400,this);	//Grafik wird ins Fenster eingefügt
 	}
 	
     public void menubuttons(){
@@ -48,16 +49,25 @@ public class Start extends JFrame implements MouseListener, ActionListener{
         play = new JButton("Start");	//Name des neuen Buttons + Beschreibung 
         play.setBounds(120,130,160,40);		//Position + Größe des Buttons 
         play.setFont(font);
+        play.setBackground(Color.BLACK);
+        play.setForeground(Color.WHITE);
+        play.setFocusPainted(false);
         this.add(play);						//Button wird hinzugefügt
 
         tut = new JButton("Tutorial");
         tut.setBounds(120,200,160,40);
         tut.setFont(font);
+        tut.setBackground(Color.BLACK);
+        tut.setForeground(Color.WHITE);
+        tut.setFocusPainted(false);
         this.add(tut);
         
         end = new JButton("Beenden");
         end.setBounds(120,270,160,40);
         end.setFont(font);
+        end.setBackground(Color.BLACK);
+        end.setForeground(Color.WHITE);
+        end.setFocusPainted(false);
         this.add(end); 
         
 
