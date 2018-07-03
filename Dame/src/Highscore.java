@@ -109,7 +109,7 @@ public class Highscore extends JFrame implements ActionListener {
         } else {
            // highs[0] = new Highscore("a", 10);
            // highs[1] = new Highscore("b", 90);
-          //  highs[2] = new Highscore("c", 55);
+          // highs[2] = new Highscore("c", 55);
         }
 		
 		
