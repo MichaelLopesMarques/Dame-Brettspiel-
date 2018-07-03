@@ -275,12 +275,13 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			try {
 				Highscore highscore = new Highscore();
 			} catch (IOException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-		}
+		
 		if(source.equals(sonstigeshelp)) {
 			Tutorial tutorial = new Tutorial();
 		}
 	}
-
+	}
 }

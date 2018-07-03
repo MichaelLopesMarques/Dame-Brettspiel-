@@ -3,6 +3,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -16,7 +17,41 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class Highscore extends JFrame implements ActionListener {
+	
+	private class HighscoreEintrag implements Comparable {
 		
+		private String player;												//Speicherung Spielername
+		private double punkte;												//Speicherung Punkte
+	
+		public void HighscoreEintrag (String player, double punkte) {		//Erzeugt einen Highscore eintrag
+        this.player = player;												
+        this.punkte = punkte;
+    }	
+		public int compareTo(Object o) {								//Vergleichsfunktion
+		Highscore He = (Highscore) o;
+        if (this.punkte > He.getPunkte()) {
+            return 1;
+        } else if (this.punkte < He.getPunkte()) {
+            return -1;
+        }
+		return 0;
+	}
+	
+	public String getPlayer() {										//Funktionen um die Werte auszulesen
+        return player;
+    }
+
+    public double getPunkte() {
+        return punkte;
+    }
+
+    public String toString() {
+        return this.player + ":" + this.punkte;
+    }
+    
+    
+}
+
 	private JLabel platz = new JLabel();
 	private JLabel score = new JLabel();
 	private JLabel name = new JLabel();
@@ -40,10 +75,44 @@ public class Highscore extends JFrame implements ActionListener {
 	private JLabel farbe1 = new JLabel();
 	private JLabel farbe2 = new JLabel();
 	private JLabel farbe3 = new JLabel();
+	
+	
+
 
 	public Highscore() throws IOException{ 			// was hoch riskantes passiert hier
 			
-			
+		Highscore[] highs = new Highscore[10];
+		
+		File textdatei = new File("highscore.txt");
+		
+		if (textdatei.exists()) {
+            try {
+            	FileReader textr = new FileReader(textdatei);					
+            	char[] c = new char[(int) textdatei.length()]; 					
+            	textr.read(c); 																							
+                String s = new String(c);
+                String[] entrys = s.split("\n");						//Den String bei Zeilenumbruch teilen und die einzelnen
+
+
+                for (int i = 0; i < entrys.length; i++) {
+                    if (i < 10) {
+                        String[] entry = entrys[i].split(":");
+                        //highs[i] = new Highscore(entry[0], Double.parseDouble(entry[1]));
+                    }
+                }
+                textr.close();
+            } catch (FileNotFoundException e) { 
+                e.printStackTrace(); 
+            } catch (IOException e) { 
+                e.printStackTrace();
+            }
+        } else {
+           // highs[0] = new Highscore("a", 10);
+           // highs[1] = new Highscore("b", 90);
+          //  highs[2] = new Highscore("c", 55);
+        }
+		
+		
 		this.setTitle("Highscore");									//Einstellungen für das Fenster
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	this.setSize(580,500);
@@ -117,7 +186,7 @@ public class Highscore extends JFrame implements ActionListener {
         this.add(platz3);
         
         name3.setBounds(180, 24, 100, 300);
-        //name3.setText("Schachprofi");
+        name3.setText("Schachprofi");
         name3.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(name3);
         
@@ -148,6 +217,15 @@ public class Highscore extends JFrame implements ActionListener {
         
 		}
 
+
+    
+    public double getPunkte() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+
+
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if(e.getActionCommand().equals("save")) {
@@ -155,4 +233,6 @@ public class Highscore extends JFrame implements ActionListener {
 		}
 		
 	}
+    
+	
 }

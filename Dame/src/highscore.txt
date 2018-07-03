@@ -1,1 +1,1 @@
-Michael,100,Weiss
+Michael:100
