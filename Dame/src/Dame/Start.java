@@ -41,6 +41,9 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 	public void paint(Graphics g){
 		//super.paint(g);
 		g.drawImage(Toolkit.getDefaultToolkit().getImage("bilder/Start.png"),0,23,400,400,this);	//Grafik wird ins Fenster eingefügt
+		play.repaint();
+		tut.repaint();
+		end.repaint();
 	}
 	
     public void menubuttons(){
