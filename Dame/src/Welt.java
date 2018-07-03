@@ -46,6 +46,8 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	public JLabel stoppuhr = new JLabel();
 	public JLabel schlagzwang = new JLabel();
 	
+	public int weisssteinda, schwarzsteinda;
+	
 	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
 	private BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
@@ -224,6 +226,29 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		};	
 
 	}
+	
+	private void hatWergewonnen() {		
+		weisssteinda=0;
+		schwarzsteinda=0;
+		for (int x=0;x<laengeFeld;x++) {	
+			for (int y=0;y<breiteFeld;y++) {
+				if(feld[x][y].getWeissSpieler()==true||feld[x][y].getWeissDame()==true||feld[x][y].getWeissWahl()==true||feld[x][y].getWeissdameWahl()==true) {
+					weisssteinda++;
+				}else if(feld[x][y].getSchwarzSpieler()==true||feld[x][y].getSchwarzDame()==true||feld[x][y].getSchwarzWahl()==true||feld[x][y].getSchwarzdameWahl()==true) {
+					schwarzsteinda++;
+				}
+			}
+		}
+		if(weisssteinda==0||schwarzsteinda==0) {
+			try {
+				Highscore highscore = new Highscore();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+			System.out.println("Gewonnen");
+			timer.cancel();
+		}
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -253,6 +278,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 				timer.scheduleAtFixedRate(timertask, 0, 1000);					//timer soll jetzt im sekundentakt hochlaufen
 			}
 		}
+		hatWergewonnen();
 	}
 
 	@Override
