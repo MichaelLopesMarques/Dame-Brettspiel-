@@ -2,10 +2,13 @@ package Dame;
 import javax.swing.JFrame;
 
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -14,43 +17,19 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	
-	private JButton single, multi, tut, end;	//Initalisierung der JButton & JFrames
-
+	private JButton play, tut, end;	//Initalisierung der JButton & JFrames
+	
+	//private BufferedImage startscreen = Bilder.Anpassung(Bilder.labeBild("bilder/Start.png"), 400,400);
+	
 	
     public Start() {
     	super();								//pack();
     	this.setTitle("Dame");
     	this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     	this.setSize(400,400);
-        
-    	Font font = new Font("Tw Cen MT Condensed Extra Bold",0,24);
     	
-        single = new JButton("Singleplayer");	//Name des neuen Buttons + Beschreibung 
-        single.setBounds(120,40,160,40);		//Position + Größe des Buttons 
-        single.setFont(font);
-        this.add(single);						//Button wird hinzugefügt
         
-        multi = new JButton("Multiplayer");
-        multi.setBounds(120,110,160,40);
-        multi.setFont(font);
-        this.add(multi);
-
-        tut = new JButton("Tutorial");
-        tut.setBounds(120,180,160,40);
-        tut.setFont(font);
-        this.add(tut);
-        
-        end = new JButton("Beenden");
-        end.setBounds(120,250,160,40);
-        end.setFont(font);
-        this.add(end); 
-        
-
-        single.addActionListener(this);			//Buttons wird der Actionlistner hinzugefügt
-        multi.addActionListener(this);
-        tut.addActionListener(this);
-        end.addActionListener(this);
-        
+    	menubuttons();
         
      	this.setLocationRelativeTo(null);		//setzt das Fenster in die mitte
      	this.setLayout(null);					
@@ -58,19 +37,42 @@ public class Start extends JFrame implements MouseListener, ActionListener{
     	this.setVisible(true);					//Fenster wird sichtbar gemacht
     }
     
+	public void paint(Graphics g){
+		//super.paint(g);
+		g.drawImage(Toolkit.getDefaultToolkit().getImage("bilder/Start.png"),0,50,400,400,this);	//Grafik wird ins Fenster eingefügt
+	}
+	
+    public void menubuttons(){
+    	Font font = new Font("Tw Cen MT Condensed Extra Bold",0,24);
+    	
+        play = new JButton("Start");	//Name des neuen Buttons + Beschreibung 
+        play.setBounds(120,130,160,40);		//Position + Größe des Buttons 
+        play.setFont(font);
+        this.add(play);						//Button wird hinzugefügt
 
+        tut = new JButton("Tutorial");
+        tut.setBounds(120,200,160,40);
+        tut.setFont(font);
+        this.add(tut);
+        
+        end = new JButton("Beenden");
+        end.setBounds(120,270,160,40);
+        end.setFont(font);
+        this.add(end); 
+        
+
+        play.addActionListener(this);			//Buttons wird der Actionlistner hinzugefügt
+        tut.addActionListener(this);
+        end.addActionListener(this);
+    }
     
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		
-		if(source.equals(single)) {				//wenn man den Button drückt
+		if(source.equals(play)) {				//wenn man den Button drückt
 			setVisible(false);
 			Welt welt = new Welt();				//Objekt Welt wird erzeugt
-		}
-		if(source.equals(multi)) {
-			setVisible(false);
-			Welt welt = new Welt();
 		}
 		if(source.equals(tut)) {
 			Tutorial tutorial = new Tutorial();
