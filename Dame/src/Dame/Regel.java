@@ -1,3 +1,4 @@
+package Dame;
 
 public class Regel extends Welt{
 
@@ -384,30 +385,30 @@ public class Regel extends Welt{
 	public static void springenPruefen() {						
 		for (int i=0;i<laengeFeld;i++) {		
 			for (int j=0;j<breiteFeld;j++) {
-				if((i-2)>=0 && (j-2)>=0 && (feld[i][j].getWeissSpieler()==true|| feld[i][j].getWeissDame()==true) && feld[i-1][j-1].getSchwarzSpieler()==true && 
-						feld[i-2][j-2].getLeerFeld()==true && wertWeiss==1) {
+				if((i-2)>=0 && (j-2)>=0 && (feld[i][j].getWeissSpieler()==true|| feld[i][j].getWeissDame()==true) && (feld[i-1][j-1].getSchwarzSpieler()==true||
+						feld[i-1][j-1].getSchwarzDame()==true) && feld[i-2][j-2].getLeerFeld()==true && wertWeiss==1) {
 					kannspringen=true;
-				}else if((i+2)<=7 && (j-2)>=0 && (feld[i][j].getWeissSpieler()==true|| feld[i][j].getWeissDame()==true) && feld[i+1][j-1].getSchwarzSpieler()==true && 
-						feld[i+2][j-2].getLeerFeld()==true && wertWeiss==1) {
+				}else if((i+2)<=7 && (j-2)>=0 && (feld[i][j].getWeissSpieler()==true|| feld[i][j].getWeissDame()==true) && (feld[i+1][j-1].getSchwarzSpieler()==true||
+						feld[i+1][j-1].getSchwarzDame()==true) && feld[i+2][j-2].getLeerFeld()==true && wertWeiss==1) {
 					kannspringen=true;
-				}else if((i-2)>=0 && (j+2)<=7 && feld[i][j].getWeissDame()==true && feld[i-1][j+1].getSchwarzSpieler()==true && 
+				}else if((i-2)>=0 && (j+2)<=7 && feld[i][j].getWeissDame()==true && (feld[i-1][j+1].getSchwarzSpieler()==true||feld[i-1][j+1].getSchwarzDame()==true) && 
 						feld[i-2][j+2].getLeerFeld()==true && wertWeiss==1) {
 					kannspringen=true;
-				}else if((i+2)<=7 && (j+2)<=7 && feld[i][j].getWeissDame()==true && feld[i+1][j+1].getSchwarzSpieler()==true && 
+				}else if((i+2)<=7 && (j+2)<=7 && feld[i][j].getWeissDame()==true && (feld[i+1][j+1].getSchwarzSpieler()==true||feld[i+1][j+1].getSchwarzDame()==true) && 
 						feld[i+2][j+2].getLeerFeld()==true && wertWeiss==1) {
 					kannspringen=true;
 				}
 					
-				if((i+2)<=7 && (j+2)<=7 && (feld[i][j].getSchwarzSpieler()==true|| feld[i][j].getSchwarzDame()==true) && feld[i+1][j+1].getWeissSpieler()==true && 
-						feld[i+2][j+2].getLeerFeld()==true && wertSchwarz==1) {
+				if((i+2)<=7 && (j+2)<=7 && (feld[i][j].getSchwarzSpieler()==true|| feld[i][j].getSchwarzDame()==true) && (feld[i+1][j+1].getWeissSpieler()==true|| 
+						feld[i+1][j+1].getWeissDame()==true) && feld[i+2][j+2].getLeerFeld()==true && wertSchwarz==1) {
 					kannspringen=true;
-				}else if((i-2)>=0 && (j+2)<=7 && (feld[i][j].getSchwarzSpieler()==true|| feld[i][j].getSchwarzDame()==true) && feld[i-1][j+1].getWeissSpieler()==true && 
-						feld[i-2][j+2].getLeerFeld()==true && wertSchwarz==1) {
+				}else if((i-2)>=0 && (j+2)<=7 && (feld[i][j].getSchwarzSpieler()==true|| feld[i][j].getSchwarzDame()==true) && (feld[i-1][j+1].getWeissSpieler()==true || 
+						feld[i-1][j+1].getWeissDame()==true) && feld[i-2][j+2].getLeerFeld()==true && wertSchwarz==1) {
 					kannspringen=true;
-				}else if((i+2)<=7 && (j-2)>=0 && feld[i][j].getSchwarzDame()==true && feld[i+1][j-1].getWeissSpieler()==true && 
+				}else if((i+2)<=7 && (j-2)>=0 && feld[i][j].getSchwarzDame()==true && (feld[i+1][j-1].getWeissSpieler()==true||feld[i+1][j-1].getWeissDame()==true) && 
 						feld[i+2][j-2].getLeerFeld()==true && wertSchwarz==1) {
 					kannspringen=true;
-				}else if((i-2)>=0 && (j-2)>=0 && feld[i][j].getSchwarzDame()==true && feld[i-1][j-1].getWeissSpieler()==true && 
+				}else if((i-2)>=0 && (j-2)>=0 && feld[i][j].getSchwarzDame()==true && (feld[i-1][j-1].getWeissSpieler()==true||feld[i-1][j-1].getWeissDame()==true) && 
 						feld[i-2][j-2].getLeerFeld()==true && wertSchwarz==1) {
 					kannspringen=true;
 				}

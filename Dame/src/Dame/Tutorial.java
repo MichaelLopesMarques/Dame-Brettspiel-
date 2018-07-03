@@ -1,3 +1,4 @@
+package Dame;
 import java.awt.Graphics;
 
 import java.awt.Toolkit;

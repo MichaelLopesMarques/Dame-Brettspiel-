@@ -1,3 +1,4 @@
+package Dame;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -64,7 +65,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	private BufferedImage weissdamegewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/weisssteindameGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
 	private BufferedImage feldgehen = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzFeldGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
-	private BufferedImage dametitel = Bilder.Anpassung(Bilder.labeBild("bilder/DameTitel.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private BufferedImage dametitel = Bilder.Anpassung(Bilder.labeBild("bilder/DameTitel.png"), 200,100);
 	
 	public Welt() {
 		super("Dame");
