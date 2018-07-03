@@ -41,7 +41,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	private TimerTask timertask;
 	private int zeit=0;
 	
-	static JMenuItem dateiNew, dateiEnd, dateiopt, sonstigeshigh, sonstigeshelp;
+	static JMenuItem dateiNew, dateiEnd, sonstigeshigh, sonstigeshelp;
 	
 	public JLabel amZug = new JLabel();
 	public JLabel stoppuhr = new JLabel();
@@ -109,14 +109,12 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	
     	
     	dateiNew = new JMenuItem("Neues Spiel");	//Menüpunkte werden erzeugt	
-    	dateiopt = new JMenuItem("Optionen");
     	dateiEnd = new JMenuItem("Beenden");
     	sonstigeshigh = new JMenuItem("Highscore");
     	sonstigeshelp = new JMenuItem("Hilfe");
     
     	
     	datei.add(dateiNew);						//Menüpunkt wird der Menüspalte eingefügt
-    	datei.add(dateiopt);
     	datei.add(dateiEnd);
     	sonstiges.add(sonstigeshigh);
     	sonstiges.add(sonstigeshelp);
@@ -243,7 +241,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		}
 		if(weisssteinda==0||schwarzsteinda==0) {
 			try {
-				Highscore highscore = new Highscore();
+				new Highscore();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
@@ -301,14 +299,14 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 		}
 		if(source.equals(sonstigeshigh)) {
 			try {
-				Highscore highscore = new Highscore();
+				new Highscore();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 		
 		if(source.equals(sonstigeshelp)) {
-			Tutorial tutorial = new Tutorial();
+			new Tutorial();
 		}
 	}
 	}

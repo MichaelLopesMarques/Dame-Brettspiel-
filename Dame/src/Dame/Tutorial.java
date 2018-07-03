@@ -7,6 +7,10 @@ import javax.swing.JFrame;
 
 public class Tutorial extends JFrame {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public Tutorial(){
 		this.setTitle("Dame Tutorial");								//Einstellungen für das Fenster
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);

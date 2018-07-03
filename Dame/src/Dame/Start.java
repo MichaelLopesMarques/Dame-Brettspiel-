@@ -9,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.awt.image.BufferedImage;
 
 import javax.swing.*;
 
@@ -19,8 +18,6 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton play, tut, end;	//Initalisierung der JButton & JFrames
-	
-	//private BufferedImage startscreen = Bilder.Anpassung(Bilder.labeBild("bilder/Start.png"), 400,400);
 	
 	
     public Start() {
@@ -85,10 +82,10 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 		
 		if(source.equals(play)) {				//wenn man den Button drückt
 			setVisible(false);
-			Welt welt = new Welt();				//Objekt Welt wird erzeugt
+			new Welt();				//Objekt Welt wird erzeugt
 		}
 		if(source.equals(tut)) {
-			Tutorial tutorial = new Tutorial();
+			new Tutorial();
 		}
 		if(source.equals(end)) {
 			System.exit(0);						//Programm wird beendet
