@@ -1,16 +1,16 @@
 package Dame;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.util.ArrayList;
 import java.util.Comparator;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -18,42 +18,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Highscore {
+public class Highscore extends HighscoreEintrag{
 	
-	private class HighscoreEintrag implements Comparable {
-		
-		private String player;												//Speicherung Spielername
-		private double punkte;												//Speicherung Punkte
-	
-	    public HighscoreEintrag (String player, double punkte) {		//Erzeugt einen Highscore eintrag
-	    	this.player = player;												
-	    	this.punkte = punkte;
-    }	
-		public int compareTo(Object o) {								//Vergleichsfunktion
-			Highscore He = (Highscore) o;
-        if (this.punkte > He.getPunkte()) {
-            return 1;
-        } else if (this.punkte < He.getPunkte()) {
-            return -1;
-        }
-		return 0;
-	}
-	
-	public String getPlayer() {										//Funktionen um die Werte auszulesen
-        return player;
-    }
-
-    public double getPunkte() {
-        return punkte;
-    }
-
-    public String toString() {
-        return this.player + ":" + this.punkte;
-    }
-    
-    
-}
-
 /*	private JLabel platz = new JLabel();
 	private JLabel score = new JLabel();
 	private JLabel name = new JLabel();
@@ -75,68 +41,59 @@ public class Highscore {
 	private JLabel farbe2 = new JLabel();
 	private JLabel farbe3 = new JLabel(); */
 	
-	
-
-
-	public Highscore() throws IOException{ 			// was hoch riskantes passiert hier
-			
-		Highscore[] highs = new Highscore[3];
+	public Highscore()  { 								
 		
-		File textdatei = new File("highscore.txt");
 		
-		if (textdatei.exists()) {
+		HighscoreEintrag[] highs = new HighscoreEintrag[3];  			//Ein Array mit 3 einträgen vom Typ HighscoreEinträge(Name und Punkte werden hier gespeichert)
+		
+		File textdatei = new File("highscore.txt");						//Textdatei wird erstellt
+		
+		if (textdatei.exists()) {										//Prüft ob die Datei existiert
             try {
-            	FileReader textr = new FileReader(textdatei);					
-            	char[] c = new char[(int) textdatei.length()]; 					
-            	textr.read(c); 																							
-                String s = new String(c);
-                String[] entrys = s.split("\n");						//Den String bei Zeilenumbruch teilen und die einzelnen
+            	FileReader textreader = new FileReader(textdatei);		//Wenn sie existiert dann wird sie mit FileReader ausgelesen			
+            	char[] c = new char[(int) textdatei.length()]; 			//Der FileReader liest einen array von char und keinen String(deshalb umwandeln) 		
+            	textreader.read(c); 									//char(neu erstellten) wird gelesen vom FileReader														
+                String s = new String(c);								//aus dem char-array einen string erzeugen, der dann den Dateinhalt enthält
+                String[] entrys = s.split("\n");						//Den String bei Zeilenumbruch teilen und die einzelnen Teile in ein array von String schreiben
 
-
-                for (int i = 0; i < entrys.length; i++) {
+                for (int i = 0; i < entrys.length; i++) {				//Jede Zeile wird abgearbeitet
                     if (i < 3) {
-                        String[] entry = entrys[i].split(":");
-                       // highs[i] = new Highscore(entry[0], Double.parseDouble(entry[1]));
-                    }
+                        String[] entry = entrys[i].split(":");			//Als Trennzeichen für die 2 Werte wurde ein ":" gewählt
+                        highs[i] = (Highscore) new HighscoreEintrag(entry[0], Double.parseDouble(entry[1]));  //einen neuen HighscoreEintrag mit den eingelesenen Werten erzeugen und an der entsprechenden Stelle im Array erzeugen                   
+                        }
                 }
-                textr.close();
-            } catch (FileNotFoundException e) { 
+                textreader.close();										//FileReader wird geschlossen
+            } catch (FileNotFoundException e) { 						//Falls Fehler passieren
                 e.printStackTrace(); 
             } catch (IOException e) { 
                 e.printStackTrace();
             }
-        } else {
-          // highs[0] = new HighscoreEintrag("Michael", 100);
-           //highs[1] = new HighscoreEintrag("Leon", 50);
-           //highs[2] = new HighscoreEintrag("Henri", 80);
+        } else {														//Wenn die Datei nicht existiert werden Beispieleinträge angelegt
+           highs[0] = (Highscore) new HighscoreEintrag("Michael", 100);								
+           highs[1] = (Highscore) new HighscoreEintrag("Leon", 50);
+           highs[2] = (Highscore) new HighscoreEintrag("Henri", 80);
         }
-		Arrays.sort(highs);
+		Arrays.sort(highs);												//das Array wird sortiert mit der Vergleichsfunktion in HighscoreEintrag					
 		
-		for(int i = 0; i < highs.length; i++) {
+		for(int i = 0; i < highs.length; i++) {							//Ausgabe der Liste
 			System.out.println(highs[i]);
 		}
-		try {
-			FileWriter fw = new FileWriter(textdatei);
-			for(int i = 0; i < highs.length; i++) {
+		try {															//FileWriter 
+			FileWriter fw = new FileWriter(textdatei);					
+			for(int i = 0; i < highs.length; i++) {						
 				if(i < highs.length -1) {
-					fw.write(highs[i].toString()+"\n");
+					fw.write(highs[i].toString()+"\n");					//Wenn man neuen Eintrag schreibt 
 				} else {
 					fw.write(highs[i].toString());
 				}
 			}
-		fw.close();
-		} catch (FileNotFoundException e) { 
+		fw.close();														//FileWriter wird geschlossen
+		} catch (FileNotFoundException e) { 							//Falls Fehler passieren
 			e.printStackTrace(); 
 		} catch (IOException e) { 
 			e.printStackTrace();
     }
-}
-
-
-public double getPunkte() {
-	// TODO Auto-generated method stub
-	return 0;
-}	
+  }
 }		
 	/*	this.setTitle("Highscore");									//Einstellungen für das Fenster
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
