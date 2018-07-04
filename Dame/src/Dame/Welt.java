@@ -39,7 +39,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	
 	private Timer timer;
 	private TimerTask timertask;
-	private int zeit=0;
+	public static int zeit=0;
 	
 	static JMenuItem dateiNew, dateiEnd, sonstigeshigh, sonstigeshelp;
 	
@@ -47,7 +47,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	public JLabel stoppuhr = new JLabel();
 	public JLabel schlagzwang = new JLabel();
 	
-	public int weisssteinda, schwarzsteinda;
+	public static int weisssteinda, schwarzsteinda;
 	
 	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
 	private BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
@@ -240,11 +240,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			}
 		}
 		if(weisssteinda==0||schwarzsteinda==0) {
-			try {
-				new Highscore();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			new Gewonnen();
 			System.out.println("Gewonnen");
 			timer.cancel();
 		}
