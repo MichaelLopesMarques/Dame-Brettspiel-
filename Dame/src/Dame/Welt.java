@@ -297,6 +297,9 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			brett();							//Das Spielbrett wird neu gezeichnet
 			screen.repaint();
 		}
+		if(source.equals(sonstigeshelp)) {
+			new Tutorial();
+		}
 		if(source.equals(sonstigeshigh)) {
 			try {
 				new Highscore();
@@ -305,9 +308,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 				e1.printStackTrace();
 			}
 		
-		if(source.equals(sonstigeshelp)) {
-			new Tutorial();
-		}
+		
 	}
 	}
 }
