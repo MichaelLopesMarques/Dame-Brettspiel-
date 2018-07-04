@@ -10,6 +10,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Comparator;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,19 +18,19 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class Highscore extends JFrame implements ActionListener {
+public class Highscore {
 	
 	private class HighscoreEintrag implements Comparable {
 		
 		private String player;												//Speicherung Spielername
 		private double punkte;												//Speicherung Punkte
 	
-		public void HighscoreEintrag (String player, double punkte) {		//Erzeugt einen Highscore eintrag
-        this.player = player;												
-        this.punkte = punkte;
+	    public HighscoreEintrag (String player, double punkte) {		//Erzeugt einen Highscore eintrag
+	    	this.player = player;												
+	    	this.punkte = punkte;
     }	
 		public int compareTo(Object o) {								//Vergleichsfunktion
-		Highscore He = (Highscore) o;
+			Highscore He = (Highscore) o;
         if (this.punkte > He.getPunkte()) {
             return 1;
         } else if (this.punkte < He.getPunkte()) {
@@ -53,13 +54,10 @@ public class Highscore extends JFrame implements ActionListener {
     
 }
 
-	private JLabel platz = new JLabel();
+/*	private JLabel platz = new JLabel();
 	private JLabel score = new JLabel();
 	private JLabel name = new JLabel();
 	private JLabel farbe = new JLabel();
-	
-	private static JTextField textfeld = new JTextField();
-	public static JButton save = new JButton();
 	
 	private JLabel platz1 = new JLabel();
 	private JLabel platz2 = new JLabel();
@@ -75,14 +73,14 @@ public class Highscore extends JFrame implements ActionListener {
 	
 	private JLabel farbe1 = new JLabel();
 	private JLabel farbe2 = new JLabel();
-	private JLabel farbe3 = new JLabel();
+	private JLabel farbe3 = new JLabel(); */
 	
 	
 
 
 	public Highscore() throws IOException{ 			// was hoch riskantes passiert hier
 			
-		Highscore[] highs = new Highscore[10];
+		Highscore[] highs = new Highscore[3];
 		
 		File textdatei = new File("highscore.txt");
 		
@@ -96,9 +94,9 @@ public class Highscore extends JFrame implements ActionListener {
 
 
                 for (int i = 0; i < entrys.length; i++) {
-                    if (i < 10) {
+                    if (i < 3) {
                         String[] entry = entrys[i].split(":");
-                        //highs[i] = new Highscore(entry[0], Double.parseDouble(entry[1]));
+                       // highs[i] = new Highscore(entry[0], Double.parseDouble(entry[1]));
                     }
                 }
                 textr.close();
@@ -108,13 +106,39 @@ public class Highscore extends JFrame implements ActionListener {
                 e.printStackTrace();
             }
         } else {
-           // highs[0] = new Highscore("a", 10);
-           // highs[1] = new Highscore("b", 90);
-          // highs[2] = new Highscore("c", 55);
+          // highs[0] = new HighscoreEintrag("Michael", 100);
+           //highs[1] = new HighscoreEintrag("Leon", 50);
+           //highs[2] = new HighscoreEintrag("Henri", 80);
         }
+		Arrays.sort(highs);
 		
-		
-		this.setTitle("Highscore");									//Einstellungen für das Fenster
+		for(int i = 0; i < highs.length; i++) {
+			System.out.println(highs[i]);
+		}
+		try {
+			FileWriter fw = new FileWriter(textdatei);
+			for(int i = 0; i < highs.length; i++) {
+				if(i < highs.length -1) {
+					fw.write(highs[i].toString()+"\n");
+				} else {
+					fw.write(highs[i].toString());
+				}
+			}
+		fw.close();
+		} catch (FileNotFoundException e) { 
+			e.printStackTrace(); 
+		} catch (IOException e) { 
+			e.printStackTrace();
+    }
+}
+
+
+public double getPunkte() {
+	// TODO Auto-generated method stub
+	return 0;
+}	
+}		
+	/*	this.setTitle("Highscore");									//Einstellungen für das Fenster
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	this.setSize(580,500);
     	this.setVisible(true);	
@@ -201,39 +225,21 @@ public class Highscore extends JFrame implements ActionListener {
         farbe3.setHorizontalAlignment(SwingConstants.CENTER);
         this.add(farbe3);
         
-        textfeld.setBounds(200, 384, 113, 24);
-        textfeld.setText("Name");
-        this.add(textfeld);
-        
-        save.setBounds(200, 416, 113, 41);
-        save.setText("Speichern");
-        save.addActionListener(this);
-        save.setActionCommand("save");
-        this.add(save);
         
         
-        BufferedReader in = new BufferedReader(new FileReader("highscore.txt"));		//Text Datei wird gelesen
+        //BufferedReader in = new BufferedReader(new FileReader("highscore.txt"));		//Text Datei wird gelesen
         
-        BufferedWriter out = new BufferedWriter(new FileWriter("highscore.txt")); 		//Um in die Text Datei schreiben zu können 
+        //BufferedWriter out = new BufferedWriter(new FileWriter("highscore.txt")); 		//Um in die Text Datei schreiben zu können 
         
-		}
-
-
-    
-    public double getPunkte() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+		} */
 
 
 
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		if(e.getActionCommand().equals("save")) {
-			
-		}
-		
-	}
+
     
 	
-}
+
+
+
+
+
