@@ -68,10 +68,10 @@ public class Start extends JFrame implements MouseListener, ActionListener{
         end.setBackground(Color.BLACK);
         end.setForeground(Color.WHITE);
         end.setFocusPainted(false);
-        this.add(end); 
+        	this.add(end); 
         
 
-        play.addActionListener(this);			//Buttons wird der Actionlistner hinzugefügt
+        play.addActionListener(this);				//Buttons wird der Actionlistner hinzugefügt
         tut.addActionListener(this);
         end.addActionListener(this);
     }
