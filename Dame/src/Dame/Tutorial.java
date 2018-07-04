@@ -28,6 +28,8 @@ public class Tutorial extends JFrame implements MouseListener, ActionListener{
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
     	this.setSize(1200,923);
     	
+    	z=1;
+    	
     	Font font = new Font("Tw Cen MT Condensed Extra Bold",0,48);
     	
         next = new JButton("Nächste");	//Name des neuen Buttons + Beschreibung 
