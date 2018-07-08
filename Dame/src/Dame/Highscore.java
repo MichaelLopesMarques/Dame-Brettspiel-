@@ -1,21 +1,10 @@
 package Dame;
-import java.awt.*;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.Arrays;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.util.ArrayList;
-import java.util.Comparator;
-import javax.swing.JButton;
+import java.util.Collections;
+import java.util.List;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class Highscore extends JFrame{
@@ -29,17 +18,22 @@ public class Highscore extends JFrame{
 	private JLabel platz2 = new JLabel();
 	private JLabel platz3 = new JLabel();
 	
-	private JLabel name1 = new JLabel();
-	private JLabel name2 = new JLabel();
-	private JLabel name3 = new JLabel();
+	private static JLabel name1 = new JLabel();
+	private static JLabel name2 = new JLabel();
+	private static JLabel name3 = new JLabel();
 	
-	private JLabel score1 = new JLabel();
-	private JLabel score2 = new JLabel();
-	private JLabel score3 = new JLabel();
+	private static JLabel score1 = new JLabel();
+	private static JLabel score2 = new JLabel();
+	private static JLabel score3 = new JLabel();
 	
-	private JLabel farbe1 = new JLabel();
-	private JLabel farbe2 = new JLabel();
-	private JLabel farbe3 = new JLabel(); 
+	private static JLabel farbe1 = new JLabel();
+	private static JLabel farbe2 = new JLabel();
+	private static JLabel farbe3 = new JLabel();
+
+	public static String farbeneu;
+	public static String nameneu;
+	
+	public static ArrayList<Integer> sortier = new ArrayList<Integer>();
 	
 	public Highscore()  { 								
 		
@@ -140,6 +134,103 @@ public class Highscore extends JFrame{
         
 		}
 		
+	public static void ArrayListEinfuegen() {
+		sortier.add(Integer.parseInt(score1.getText()));
+		sortier.add(Integer.parseInt(score2.getText()));
+		sortier.add(Integer.parseInt(score3.getText()));
+		
+		String[] a = {score1.getText(),name1.getText(),farbe1.getText()};
+		String[] b = {score2.getText(),name2.getText(),farbe2.getText()};
+		String[] c = {score3.getText(),name3.getText(),farbe3.getText()};
+		String[] d = {String.valueOf(Welt.zeit),Gewonnen.textfeld.getText(),Gewonnen.farbewin};
+		
+		System.out.println(sortier);
+		
+		sortieren(sortier, 0, sortier.size() - 1);
+
+		System.out.println(sortier);
+		score1.setText(String.valueOf(sortier.get(0)));
+		score2.setText(String.valueOf(sortier.get(1)));
+		score3.setText(String.valueOf(sortier.get(2)));
+		
+		if(sortier.get(0)==Integer.parseInt(a[0])) {			//achtung unfall ;D
+			score1.setText(String.valueOf(sortier.get(0)));
+			name1.setText(a[1]);
+			farbe1.setText(a[2]);
+		}else if(sortier.get(0)==Integer.parseInt(b[0])) {
+			score1.setText(String.valueOf(sortier.get(0)));
+			name1.setText(b[1]);
+			farbe1.setText(b[2]);
+		}else if(sortier.get(0)==Integer.parseInt(c[0])) {
+			score1.setText(String.valueOf(sortier.get(0)));
+			name1.setText(c[1]);
+			farbe1.setText(c[2]);
+		}else if(sortier.get(0)==Integer.parseInt(d[0])) {
+			score1.setText(String.valueOf(sortier.get(0)));
+			name1.setText(d[1]);
+			farbe1.setText(d[2]);
+		}
+		
+		if(sortier.get(1)==Integer.parseInt(a[0])) {
+			score2.setText(String.valueOf(sortier.get(1)));
+			name2.setText(a[1]);
+			farbe2.setText(a[2]);
+		}else if(sortier.get(1)==Integer.parseInt(b[0])) {
+			score2.setText(String.valueOf(sortier.get(1)));
+			name2.setText(b[1]);
+			farbe2.setText(b[2]);
+		}else if(sortier.get(1)==Integer.parseInt(c[0])) {
+			score2.setText(String.valueOf(sortier.get(1)));
+			name2.setText(c[1]);
+			farbe2.setText(c[2]);
+		}else if(sortier.get(1)==Integer.parseInt(d[0])) {
+			score2.setText(String.valueOf(sortier.get(1)));
+			name2.setText(d[1]);
+			farbe2.setText(d[2]);
+		}
+		
+		if(sortier.get(2)==Integer.parseInt(a[0])) {
+			score3.setText(String.valueOf(sortier.get(2)));
+			name3.setText(a[1]);
+			farbe3.setText(a[2]);
+		}else if(sortier.get(2)==Integer.parseInt(b[0])) {
+			score3.setText(String.valueOf(sortier.get(2)));
+			name3.setText(b[1]);
+			farbe3.setText(b[2]);
+		}else if(sortier.get(2)==Integer.parseInt(c[0])) {
+			score3.setText(String.valueOf(sortier.get(2)));
+			name3.setText(c[1]);
+			farbe3.setText(c[2]);
+		}else if(sortier.get(2)==Integer.parseInt(d[0])) {
+			score3.setText(String.valueOf(sortier.get(2)));
+			name3.setText(d[1]);
+			farbe3.setText(d[2]);
+		}
+	}
+	
+	
+	public static void sortieren(List<Integer> liste, int start, int ende) {
+		if (start < ende) {
+			int pivot = start;
+		    int links = start + 1;
+		    int rechts = ende;
+		    int pivotValue = liste.get(pivot);
+		    while (links <= rechts) {
+		    	while (links <= ende && pivotValue >= liste.get(links)) {
+		    		links++;
+		    	}
+		    	while (rechts > start && pivotValue < liste.get(rechts)) {
+		    		rechts--;
+		    	}
+		    	if (links < rechts) {
+		    		Collections.swap(liste, links, rechts);
+		    	}
+		    }
+		    Collections.swap(liste, pivot, links - 1);
+		    sortieren(liste, start, rechts - 1); 
+		    sortieren(liste, rechts + 1, ende);   
+		}
+	}
 }
 
 

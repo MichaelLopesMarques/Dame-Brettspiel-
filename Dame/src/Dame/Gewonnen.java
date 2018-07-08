@@ -11,10 +11,11 @@ import javax.swing.SwingConstants;
 
 public class Gewonnen extends JFrame implements ActionListener{
     
-	private static JTextField textfeld = new JTextField();
+	static JTextField textfeld = new JTextField();
 	private static JButton speicher = new JButton();
 	private JLabel zeit = new JLabel();
 	private JLabel farbe = new JLabel();
+	static String farbewin;
 	
 	public Gewonnen() {
     	super();								//pack();
@@ -51,11 +52,13 @@ public class Gewonnen extends JFrame implements ActionListener{
         	farbe.setText("Gewonnen hat schwarz");
         	farbe.setHorizontalAlignment(SwingConstants.CENTER);
         	this.add(farbe);
+        	farbewin="schwarz";
         }else if(Welt.schwarzsteinda==0) {
         	farbe.setBounds(350, 50, 200, 40);
         	farbe.setText("Gewonnen hat weiss");
         	farbe.setHorizontalAlignment(SwingConstants.CENTER);
         	this.add(farbe);
+        	farbewin="weiss";
         }
     }
 
@@ -65,6 +68,8 @@ public class Gewonnen extends JFrame implements ActionListener{
 		
 		if(source.equals(speicher)&&!textfeld.getText().equals("Name")) {
 			new Highscore();
+			Highscore.sortier.add(Welt.zeit);
+			Highscore.ArrayListEinfuegen();
 			dispose();
 		}
 	}
