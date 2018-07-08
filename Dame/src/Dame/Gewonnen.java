@@ -70,7 +70,7 @@ public class Gewonnen extends JFrame implements ActionListener{
 			new Highscore();
 			Highscore.sortier.add(Welt.zeit);
 			Highscore.ArrayListEinfuegen();
-			dispose();
+			dispose();		//krass
 		}
 	}
 }
