@@ -81,14 +81,14 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
     	Font font = new Font("Tw Cen MT Condensed Extra Bold",0,24);
     	
     	stoppuhr.setFont(font);
-    	stoppuhr.setBounds(810, 100, 180, 80);
+    	stoppuhr.setBounds(800, 100, 200, 80);
     	this.add(stoppuhr);
     	amZug.setFont(font);
-    	amZug.setBounds(810, 200, 180, 80);
+    	amZug.setBounds(800, 200, 200, 100);
     	amZug.setOpaque(true);
     	this.add(amZug);
     	schlagzwang.setFont(font);
-    	schlagzwang.setBounds(810, 300, 180, 80);
+    	schlagzwang.setBounds(800, 300, 200, 100);
     	this.add(schlagzwang);
     	
     	
@@ -185,12 +185,12 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	    	if(Regel.getWertWeiss() > 0 && Regel.getWertSchwarz() == 0) {
 	    		amZug.setBackground(Color.WHITE);
 	    		amZug.setForeground(Color.BLACK);
-	    		amZug.setText("<html><body>Weiss<br>am Zug</html>");
+	    		amZug.setText("<html><body>   Weiss<br>am Zug</html>");
 	    		amZug.repaint();
 	    	}else if(Regel.getWertWeiss() == 0 && Regel.getWertSchwarz() > 0) {
 	    		amZug.setBackground(Color.BLACK);
 	    		amZug.setForeground(Color.WHITE);
-	    		amZug.setText("<html><body>Schwarz<br>am Zug</html>");
+	    		amZug.setText("<html><body>   Schwarz<br>am Zug</html>");
 	    		amZug.repaint();
 	    	}
 	    	if(Regel.kannspringen == true) {

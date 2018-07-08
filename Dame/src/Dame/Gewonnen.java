@@ -60,8 +60,12 @@ public class Gewonnen extends JFrame implements ActionListener{
     }
 
 	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		// TODO Auto-generated method stub
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
 		
+		if(source.equals(speicher)&&!textfeld.getText().equals("Name")) {
+			new Highscore();
+			dispose();
+		}
 	}
 }
