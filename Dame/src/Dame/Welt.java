@@ -35,9 +35,9 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	
 	protected static Feld[][] feld;
 	
-	private Screen screen;
+	private static Screen screen;
 	
-	private Timer timer;
+	private static Timer timer;
 	private TimerTask timertask;
 	public static int zeit=0;
 	
@@ -49,23 +49,23 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	
 	public static int weisssteinda, schwarzsteinda;
 	
-	private BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
-	private BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage weiss = Bilder.Anpassung(Bilder.labeBild("bilder/weiss.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage schwarz = Bilder.Anpassung(Bilder.labeBild("bilder/schwarz.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
-	private BufferedImage weissstein = Bilder.Anpassung(Bilder.labeBild("bilder/weissstein.png"), Feld.gethoeheW(),Feld.getweiteW());
-	private BufferedImage schwarzstein = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzstein.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage weissstein = Bilder.Anpassung(Bilder.labeBild("bilder/weissstein.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage schwarzstein = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzstein.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
-	private BufferedImage schwarzgewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
-	private BufferedImage weissgewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/weissGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage schwarzgewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage weissgewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/weissGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
-	private BufferedImage schwarzdame = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzsteindame.png"), Feld.gethoeheW(),Feld.getweiteW());
-	private BufferedImage weissdame = Bilder.Anpassung(Bilder.labeBild("bilder/weisssteindame.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage schwarzdame = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzsteindame.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage weissdame = Bilder.Anpassung(Bilder.labeBild("bilder/weisssteindame.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
-	private BufferedImage schwarzdamegewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzsteindameGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
-	private BufferedImage weissdamegewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/weisssteindameGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage schwarzdamegewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzsteindameGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage weissdamegewaehlt = Bilder.Anpassung(Bilder.labeBild("bilder/weisssteindameGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
 	
-	private BufferedImage feldgehen = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzFeldGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
-	private BufferedImage dametitel = Bilder.Anpassung(Bilder.labeBild("bilder/DameTitel.png"), 200,100);
+	private static BufferedImage feldgehen = Bilder.Anpassung(Bilder.labeBild("bilder/schwarzFeldGewaehlt.png"), Feld.gethoeheW(),Feld.getweiteW());
+	private static BufferedImage dametitel = Bilder.Anpassung(Bilder.labeBild("bilder/DameTitel.png"), 200,100);
 	
 	public Welt() {
 		super("Dame");
@@ -134,7 +134,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 
     }
 
-	public void brett() {
+	public static void brett() {
 		int z=0;
     
 		feld = new Feld[laengeFeld][breiteFeld];
@@ -185,12 +185,12 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	    	if(Regel.getWertWeiss() > 0 && Regel.getWertSchwarz() == 0) {
 	    		amZug.setBackground(Color.WHITE);
 	    		amZug.setForeground(Color.BLACK);
-	    		amZug.setText("<html><body>   Weiss<br>am Zug</html>");
+	    		amZug.setText("<html><body>Weiss<br>am Zug</html>");
 	    		amZug.repaint();
 	    	}else if(Regel.getWertWeiss() == 0 && Regel.getWertSchwarz() > 0) {
 	    		amZug.setBackground(Color.BLACK);
 	    		amZug.setForeground(Color.WHITE);
-	    		amZug.setText("<html><body>   Schwarz<br>am Zug</html>");
+	    		amZug.setText("<html><body>Schwarz<br>am Zug</html>");
 	    		amZug.repaint();
 	    	}
 	    	if(Regel.kannspringen == true) {
@@ -245,6 +245,16 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			timer.cancel();
 		}
 	}
+	
+	public static void Reset() {
+		Regel.wertWeiss=0;
+		Regel.wertSchwarz=1;
+		Regel.kannspringen=false;
+		timer.cancel();
+		zeit=0;
+		brett();							//Das Spielbrett wird neu gezeichnet
+		screen.repaint();
+	}
 
 	@Override
 	public void mouseClicked(MouseEvent arg0) {
@@ -290,8 +300,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 			System.exit(0);						//Programm wird beendet
 		}
 		if(source.equals(dateiNew)) {			
-			brett();							//Das Spielbrett wird neu gezeichnet
-			screen.repaint();
+			Reset();
 		}
 		if(source.equals(sonstigeshelp)) {
 			new Tutorial();

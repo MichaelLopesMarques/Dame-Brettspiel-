@@ -1,34 +1,24 @@
 package Dame;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-public class Highscore extends JFrame{
+public class Highscore extends JFrame implements ActionListener{
 	
-	private JLabel platz = new JLabel();
-	private JLabel score = new JLabel();
-	private JLabel name = new JLabel();
-	private JLabel farbe = new JLabel();
+	private JLabel[] platz = new JLabel[4];
+	private static JLabel[] score = new JLabel[4];
+	private static JLabel[] name = new JLabel[4];
+	private static JLabel[] farbe = new JLabel[4];
 	
-	private JLabel platz1 = new JLabel();
-	private JLabel platz2 = new JLabel();
-	private JLabel platz3 = new JLabel();
-	
-	private static JLabel name1 = new JLabel();
-	private static JLabel name2 = new JLabel();
-	private static JLabel name3 = new JLabel();
-	
-	private static JLabel score1 = new JLabel();
-	private static JLabel score2 = new JLabel();
-	private static JLabel score3 = new JLabel();
-	
-	private static JLabel farbe1 = new JLabel();
-	private static JLabel farbe2 = new JLabel();
-	private static JLabel farbe3 = new JLabel();
+	private static JButton nochmal = new JButton();
+	private static JButton beenden = new JButton();
 
 	public static String farbeneu;
 	public static String nameneu;
@@ -40,108 +30,134 @@ public class Highscore extends JFrame{
 				
 		this.setTitle("Highscore");									//Einstellungen für das Fenster
     	this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-    	this.setSize(580,500);
+    	this.setSize(580,400);
     	this.setVisible(true);	
     	this.setLayout(null);
     	this.setLocationRelativeTo(null);
     	
-    	platz.setBounds(20, 24, 52, 29);
-        platz.setText("Platz");
-        platz.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(platz);
+    	platz[0]=new JLabel();
+    	platz[0].setBounds(20, 24, 52, 29);
+    	platz[0].setText("Platz");
+    	platz[0].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(platz[0]);
         
-        name.setBounds(180, 24, 100, 29);
-        name.setText("Name");
-        name.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(name);
+        name[0]=new JLabel();
+        name[0].setBounds(180, 24, 100, 29);
+        name[0].setText("Name");
+        name[0].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(name[0]);
         
-        score.setBounds(400, 24, 64, 29);
-        score.setText("Zeit");
-        score.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(score);
+        score[0]=new JLabel();
+        score[0].setBounds(400, 24, 64, 29);
+        score[0].setText("Zeit");
+        score[0].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(score[0]);
         
-        farbe.setBounds(480, 24, 64, 29);
-        farbe.setText("Farbe");
-        farbe.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(farbe);
-        
-        ///////////////////////////////////////////////////////////////////////////////////////        
-        
-        platz1.setBounds(20, 24, 52, 100);
-        platz1.setText("1");
-        platz1.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(platz1);
-        
-        name1.setBounds(180, 24, 100, 100);
-        name1.setText("Michael");
-        name1.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(name1);
-        
-        score1.setBounds(400, 24, 64, 100);
-        score1.setText("70");
-        score1.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(score1);
-        
-        farbe1.setBounds(480, 24, 64, 100);
-        farbe1.setText("Weiss");
-        farbe1.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(farbe1);
+        farbe[0]=new JLabel();
+        farbe[0].setBounds(480, 24, 64, 29);
+        farbe[0].setText("Farbe");
+        farbe[0].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(farbe[0]);
         
         ///////////////////////////////////////////////////////////////////////////////////////        
         
-        platz2.setBounds(20, 24, 52, 200);
-        platz2.setText("2");
-        platz2.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(platz2);
+        platz[1]=new JLabel();
+        platz[1].setBounds(20, 24, 52, 100);
+        platz[1].setText("1");
+        platz[1].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(platz[1]);
         
-        name2.setBounds(180, 24, 100, 200);
-        name2.setText("Mamba-Player");
-        name2.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(name2);
+        name[1]=new JLabel();
+        name[1].setBounds(180, 24, 100, 100);
+        name[1].setText("Michael");
+        name[1].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(name[1]);
         
-        score2.setBounds(400, 24, 64, 200);
-        score2.setText("80");
-        score2.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(score2);
+        score[1]=new JLabel();
+        score[1].setBounds(400, 24, 64, 100);
+        score[1].setText("70");
+        score[1].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(score[1]);
         
-        farbe2.setBounds(480, 24, 64, 200);
-        farbe2.setText("Schwarz");
-        farbe2.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(farbe2);
+        farbe[1]=new JLabel();
+        farbe[1].setBounds(480, 24, 64, 100);
+        farbe[1].setText("Weiss");
+        farbe[1].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(farbe[1]);
+        
+        ///////////////////////////////////////////////////////////////////////////////////////        
+        
+        platz[2]=new JLabel();
+        platz[2].setBounds(20, 24, 52, 200);
+        platz[2].setText("2");
+        platz[2].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(platz[2]);
+        
+        name[2]=new JLabel();
+        name[2].setBounds(180, 24, 100, 200);
+        name[2].setText("Mamba-Player");
+        name[2].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(name[2]);
+        
+        score[2]=new JLabel();
+        score[2].setBounds(400, 24, 64, 200);
+        score[2].setText("80");
+        score[2].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(score[2]);
+        
+        farbe[2]=new JLabel();
+        farbe[2].setBounds(480, 24, 64, 200);
+        farbe[2].setText("Schwarz");
+        farbe[2].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(farbe[2]);
         
         ///////////////////////////////////////////////////////////////////////////////////////
         
-        platz3.setBounds(20, 24, 52, 300);
-        platz3.setText("3");
-        platz3.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(platz3);
+        platz[3]=new JLabel();
+        platz[3].setBounds(20, 24, 52, 300);
+        platz[3].setText("3");
+        platz[3].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(platz[3]);
         
-        name3.setBounds(180, 24, 100, 300);
-        name3.setText("Damepro");
-        name3.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(name3);
+        name[3]=new JLabel();
+        name[3].setBounds(180, 24, 100, 300);
+        name[3].setText("Damepro");
+        name[3].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(name[3]);
         
-        score3.setBounds(400, 24, 64, 300);
-        score3.setText("86");
-        score3.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(score3);
+        score[3]=new JLabel();
+        score[3].setBounds(400, 24, 64, 300);
+        score[3].setText("86");
+        score[3].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(score[3]);
         
-        farbe3.setBounds(480, 24, 64, 300);
-        farbe3.setText("Schwarz");
-        farbe3.setHorizontalAlignment(SwingConstants.CENTER);
-        this.add(farbe3);
+        farbe[3]=new JLabel();
+        farbe[3].setBounds(480, 24, 64, 300);
+        farbe[3].setText("Schwarz");
+        farbe[3].setHorizontalAlignment(SwingConstants.CENTER);
+        this.add(farbe[3]);
 
+        ///////////////////////////////////////////////////////////////////////////////////////
         
+        nochmal.setBounds(100, 250, 100, 40);
+        nochmal.setText("Nochmal");
+        nochmal.addActionListener(this);
+        this.add(nochmal);
+        
+        beenden.setBounds(380, 250, 100, 40);
+        beenden.setText("Beenden");
+        beenden.addActionListener(this);
+        this.add(beenden);
 		}
 		
 	public static void ArrayListEinfuegen() {
-		sortier.add(Integer.parseInt(score1.getText()));
-		sortier.add(Integer.parseInt(score2.getText()));
-		sortier.add(Integer.parseInt(score3.getText()));
+		sortier.add(Integer.parseInt(score[1].getText()));
+		sortier.add(Integer.parseInt(score[2].getText()));
+		sortier.add(Integer.parseInt(score[3].getText()));
 		
-		String[] a = {score1.getText(),name1.getText(),farbe1.getText()};
-		String[] b = {score2.getText(),name2.getText(),farbe2.getText()};
-		String[] c = {score3.getText(),name3.getText(),farbe3.getText()};
+		String[] a = {score[1].getText(),name[1].getText(),farbe[1].getText()};
+		String[] b = {score[2].getText(),name[2].getText(),farbe[2].getText()};
+		String[] c = {score[3].getText(),name[3].getText(),farbe[3].getText()};
 		String[] d = {String.valueOf(Welt.zeit),Gewonnen.textfeld.getText(),Gewonnen.farbewin};
 		
 		System.out.println(sortier);
@@ -149,63 +165,31 @@ public class Highscore extends JFrame{
 		sortieren(sortier, 0, sortier.size() - 1);
 
 		System.out.println(sortier);
-		score1.setText(String.valueOf(sortier.get(0)));
-		score2.setText(String.valueOf(sortier.get(1)));
-		score3.setText(String.valueOf(sortier.get(2)));
 		
-		if(sortier.get(0)==Integer.parseInt(a[0])) {			//achtung unfall ;D
-			score1.setText(String.valueOf(sortier.get(0)));
-			name1.setText(a[1]);
-			farbe1.setText(a[2]);
-		}else if(sortier.get(0)==Integer.parseInt(b[0])) {
-			score1.setText(String.valueOf(sortier.get(0)));
-			name1.setText(b[1]);
-			farbe1.setText(b[2]);
-		}else if(sortier.get(0)==Integer.parseInt(c[0])) {
-			score1.setText(String.valueOf(sortier.get(0)));
-			name1.setText(c[1]);
-			farbe1.setText(c[2]);
-		}else if(sortier.get(0)==Integer.parseInt(d[0])) {
-			score1.setText(String.valueOf(sortier.get(0)));
-			name1.setText(d[1]);
-			farbe1.setText(d[2]);
+		for (int i=0;i<(sortier.size()-1);i++) {
+			if(sortier.get(i)==Integer.parseInt(a[0])) {			//achtung unfall ;D
+				score[i+1].setText(String.valueOf(sortier.get(i)));
+				name[i+1].setText(a[1]);
+				farbe[i+1].setText(a[2]);
+			}else if(sortier.get(i)==Integer.parseInt(b[0])) {
+				score[i+1].setText(String.valueOf(sortier.get(i)));
+				name[i+1].setText(b[1]);
+				farbe[i+1].setText(b[2]);
+			}else if(sortier.get(i)==Integer.parseInt(c[0])) {
+				score[i+1].setText(String.valueOf(sortier.get(i)));
+				name[i+1].setText(c[1]);
+				farbe[i+1].setText(c[2]);
+			}else if(sortier.get(i)==Integer.parseInt(d[0])) {
+				score[i+1].setText(String.valueOf(sortier.get(i)));
+				name[i+1].setText(d[1]);
+				farbe[i+1].setText(d[2]);
+			}
 		}
 		
-		if(sortier.get(1)==Integer.parseInt(a[0])) {
-			score2.setText(String.valueOf(sortier.get(1)));
-			name2.setText(a[1]);
-			farbe2.setText(a[2]);
-		}else if(sortier.get(1)==Integer.parseInt(b[0])) {
-			score2.setText(String.valueOf(sortier.get(1)));
-			name2.setText(b[1]);
-			farbe2.setText(b[2]);
-		}else if(sortier.get(1)==Integer.parseInt(c[0])) {
-			score2.setText(String.valueOf(sortier.get(1)));
-			name2.setText(c[1]);
-			farbe2.setText(c[2]);
-		}else if(sortier.get(1)==Integer.parseInt(d[0])) {
-			score2.setText(String.valueOf(sortier.get(1)));
-			name2.setText(d[1]);
-			farbe2.setText(d[2]);
-		}
-		
-		if(sortier.get(2)==Integer.parseInt(a[0])) {
-			score3.setText(String.valueOf(sortier.get(2)));
-			name3.setText(a[1]);
-			farbe3.setText(a[2]);
-		}else if(sortier.get(2)==Integer.parseInt(b[0])) {
-			score3.setText(String.valueOf(sortier.get(2)));
-			name3.setText(b[1]);
-			farbe3.setText(b[2]);
-		}else if(sortier.get(2)==Integer.parseInt(c[0])) {
-			score3.setText(String.valueOf(sortier.get(2)));
-			name3.setText(c[1]);
-			farbe3.setText(c[2]);
-		}else if(sortier.get(2)==Integer.parseInt(d[0])) {
-			score3.setText(String.valueOf(sortier.get(2)));
-			name3.setText(d[1]);
-			farbe3.setText(d[2]);
-		}
+		sortier.remove(3);
+		sortier.remove(2);
+		sortier.remove(1);
+		sortier.remove(0);
 	}
 	
 	
@@ -229,6 +213,20 @@ public class Highscore extends JFrame{
 		    Collections.swap(liste, pivot, links - 1);
 		    sortieren(liste, start, rechts - 1); 
 		    sortieren(liste, rechts + 1, ende);   
+		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		Object source = e.getSource();
+		
+		if(source.equals(nochmal)) {
+			Welt.Reset();
+			dispose();
+		}
+		
+		if(source.equals(beenden)) {
+			System.exit(0);
 		}
 	}
 }
