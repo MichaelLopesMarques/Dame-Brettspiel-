@@ -83,9 +83,10 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 		if(source.equals(play)) {				//wenn man den Button drückt
 			setVisible(false);
 			new Welt();				//Objekt Welt wird erzeugt
+
 		}
 		if(source.equals(tut)) {
-			new Tutorial();
+			new Gewonnen();
 		}
 		if(source.equals(end)) {
 			System.exit(0);						//Programm wird beendet

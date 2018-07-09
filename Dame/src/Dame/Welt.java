@@ -278,6 +278,9 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	public void mousePressed(MouseEvent e) {
 		if(SwingUtilities.isLeftMouseButton(e)){
 			Regel.klicklinks(e.getX()-getInsets().left, e.getY()-getInsets().top-menuhoehe);
+			if(Regel.wertSchwarz>0) {
+				Bot.Bot();
+			}
 			screen.repaint();
 			if(zeit==0) {														//wenn die zeit auf 0 ist
 				timer();														//dann wird die Methode Timer gesetzt

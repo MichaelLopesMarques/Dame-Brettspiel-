@@ -7,11 +7,11 @@ public class Regel extends Welt{
 	public static int wertWeiss=0;				//0 = weisser spieler nicht dran   1 = weiss spieler dran    2 = weisser stein genommen
 	public static int wertSchwarz=1;
 	
-	private static int merkxwert;				//x-Feld wird hier drin gespeichert
-	private static int merkywert;				//y-Feld wird hier drin gespeichert
+	public static int merkxwert;				//x-Feld wird hier drin gespeichert
+	public static int merkywert;				//y-Feld wird hier drin gespeichert
 	
-	private static int xFeld;					//sind die Felder im Array
-	private static int yFeld;
+	public static int xFeld;					//sind die Felder im Array
+	public static int yFeld;
 	
 	public static boolean kannspringen=false;
 	
