@@ -30,12 +30,6 @@ public class Bot extends Regel {
 
 			}
 			
-
-			
-			
-
-
-		
 			if(xFeld<8 && feld[merkxwert][merkywert].getSchwarzWahl()==true && feld[xFeld + 1][yFeld + 1].getFeldhinbewegen()==true && wertSchwarz==2 && kannspringen==false) {			//Bedingung um schwarzen Stein zu setzen
 				System.out.println("schwarzer stein setzen");
 				feld[xFeld + 1][yFeld + 1].setFeldhinbewegen(false);
@@ -43,7 +37,10 @@ public class Bot extends Regel {
 				feld[merkxwert][merkywert].setSchwarzWahl(false);
 				feld[merkxwert][merkywert].setLeerFeld(true);
 				vordefiniertEntfernen();
-				schwarzDamePruefen();
+				if(feld[xFeld][7].getSchwarzSpieler()==true) {			//prüfe, ob schwarze Spielfigur zur Dame wird
+					feld[xFeld][7].setSchwarzSpieler(false);			//schwarz Figur wird entfernt
+					feld[xFeld][7].setSchwarzDame(true);				//schwarz Dame wird platziert
+				}
 				wertSchwarz=0;																													//schwarzer Zug wird beendet
 				wertWeiss++;
 				return;
@@ -55,10 +52,14 @@ public class Bot extends Regel {
 				feld[merkxwert][merkywert].setSchwarzWahl(false);
 				feld[merkxwert][merkywert].setLeerFeld(true);
 				vordefiniertEntfernen();
-				schwarzDamePruefen();
+				if(feld[xFeld][7].getSchwarzSpieler()==true) {			//prüfe, ob schwarze Spielfigur zur Dame wird
+					feld[xFeld][7].setSchwarzSpieler(false);			//schwarz Figur wird entfernt
+					feld[xFeld][7].setSchwarzDame(true);				//schwarz Dame wird platziert
+				}
 				wertSchwarz=0;																													//schwarzer Zug wird beendet
 				wertWeiss++;
 				return;
+				
 			}else if(wertSchwarz==2 && feld[xFeld][yFeld].getFeldhinbewegen()==false && feld[merkxwert][merkywert].getSchwarzWahl()==true){		//falls man sich mit der schwarzen Figur verklickt oder eine andere Figur lieber spielen möchte
 				feld[merkxwert][merkywert].setSchwarzWahl(false);
 				feld[merkxwert][merkywert].setSchwarzSpieler(true);

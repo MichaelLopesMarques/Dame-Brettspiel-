@@ -278,7 +278,7 @@ public class Welt extends JFrame implements MouseListener, ActionListener{
 	public void mousePressed(MouseEvent e) {
 		if(SwingUtilities.isLeftMouseButton(e)){
 			Regel.klicklinks(e.getX()-getInsets().left, e.getY()-getInsets().top-menuhoehe);
-			if(Regel.wertSchwarz>0) {
+			if(Regel.wertSchwarz>0 && Start.bot==true) {
 				Bot.Bot();
 			}
 			screen.repaint();

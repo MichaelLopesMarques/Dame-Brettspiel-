@@ -17,7 +17,9 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	
-	private JButton play, tut, end;	//Initalisierung der JButton & JFrames
+	private JButton single, multi, tut, end;	//Initalisierung der JButton & JFrames
+	
+	public static boolean bot;
 	
 	
     public Start() {
@@ -38,7 +40,8 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 	public void paint(Graphics g){
 		//super.paint(g);
 		g.drawImage(Toolkit.getDefaultToolkit().getImage("bilder/Start.png"),0,23,400,400,this);	//Grafik wird ins Fenster eingefügt
-		play.repaint();
+		single.repaint();
+		multi.repaint();
 		tut.repaint();
 		end.repaint();
 	}
@@ -46,16 +49,25 @@ public class Start extends JFrame implements MouseListener, ActionListener{
     public void menubuttons(){
     	Font font = new Font("Tw Cen MT Condensed Extra Bold",0,24);
     	
-        play = new JButton("Start");	//Name des neuen Buttons + Beschreibung 
-        play.setBounds(120,130,160,40);		//Position + Größe des Buttons 
-        play.setFont(font);
-        play.setBackground(Color.BLACK);
-        play.setForeground(Color.WHITE);
-        play.setFocusPainted(false);
-        this.add(play);						//Button wird hinzugefügt
+        single = new JButton("Single");	//Name des neuen Buttons + Beschreibung 
+        single.setBounds(100,130,90,40);		//Position + Größe des Buttons 
+        single.setFont(font);
+        single.setBackground(Color.BLACK);
+        single.setForeground(Color.WHITE);
+        single.setFocusPainted(false);
+        this.add(single);						//Button wird hinzugefügt
+        
+        multi = new JButton("Multi");	//Name des neuen Buttons + Beschreibung 
+        multi.setBounds(210,130,90,40);		//Position + Größe des Buttons 
+        multi.setFont(font);
+        multi.setBackground(Color.BLACK);
+        multi.setForeground(Color.WHITE);
+        multi.setFocusPainted(false);
+        this.add(multi);						//Button wird hinzugefügt
+
 
         tut = new JButton("Tutorial");
-        tut.setBounds(120,200,160,40);
+        tut.setBounds(100,200,200,40);
         tut.setFont(font);
         tut.setBackground(Color.BLACK);
         tut.setForeground(Color.WHITE);
@@ -63,7 +75,7 @@ public class Start extends JFrame implements MouseListener, ActionListener{
         this.add(tut);
         
         end = new JButton("Beenden");
-        end.setBounds(120,270,160,40);
+        end.setBounds(100,270,200,40);
         end.setFont(font);
         end.setBackground(Color.BLACK);
         end.setForeground(Color.WHITE);
@@ -71,19 +83,27 @@ public class Start extends JFrame implements MouseListener, ActionListener{
         	this.add(end); 
         
 
-        play.addActionListener(this);				//Buttons wird der Actionlistner hinzugefügt
+        single.addActionListener(this);				//Buttons wird der Actionlistner hinzugefügt
         tut.addActionListener(this);
         end.addActionListener(this);
+        multi.addActionListener(this);
     }
     
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		Object source = e.getSource();
 		
-		if(source.equals(play)) {				//wenn man den Button drückt
-			setVisible(false);
+		if(source.equals(single)) {				//wenn man den Button drückt
+			//setVisible(false);
+			bot=true;
 			new Welt();				//Objekt Welt wird erzeugt
+			
 
+		}
+		if(source.equals(multi)) {
+			bot=false;
+			new Welt();
+			
 		}
 		if(source.equals(tut)) {
 			new Gewonnen();
