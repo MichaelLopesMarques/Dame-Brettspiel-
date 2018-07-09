@@ -24,6 +24,8 @@ public class Regel extends Welt{
 		
 			springenPruefen();
 			
+			//////////////////////////////////////////////////////////////////////////////////////Nehmen der Spielsteine			
+			
 			if(feld[xFeld][yFeld].getWeissSpieler()==true && wertWeiss==1 && wertSchwarz==0) {			//Bedingung um weissen Stein zu nehmen
 				feld[xFeld][yFeld].setWeissSpieler(false);												//auf dem geklickten Feld wird die weisse Figur ausgetauscht
 				feld[xFeld][yFeld].setWeissWahl(true);													//durch den gewählten weissen Stein
@@ -54,7 +56,7 @@ public class Regel extends Welt{
 				return;
 			}
 			
-			
+			//////////////////////////////////////////////////////////////////////////////////////Springen der Spielsteine
 		
 			if(feld[xFeld][yFeld].getFeldhinbewegen()==true && (merkxwert-2)>=0 && (merkywert-2)>=0 &&  feld[xFeld][yFeld]==feld[merkxwert-2][merkywert-2]) {																	//Bedingung für Springen nach links bei weiss
 				if(feld[merkxwert][merkywert].getWeissWahl()==true && wertWeiss==2) {
@@ -140,44 +142,44 @@ public class Regel extends Welt{
 				return;
 			}
 			
-			
+			//////////////////////////////////////////////////////////////////////////////////////Setzen der Spielsteine			
 		
 			if(feld[merkxwert][merkywert].getWeissWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertWeiss==2 && kannspringen==false) {			//Bedingung um weissen Stein zu setzen
 				System.out.println("weißer stein setzen");
 				weissPlatzWechsel();
 				weissDamePruefen();
-				wertWeiss=0;																												//wertWeiss wird auf 0 gesetzt, da der Zug zu ende ist
+				wertWeiss=0;																																		//wertWeiss wird auf 0 gesetzt, da der Zug zu ende ist
 				wertSchwarz++;
 				return;
 			}else if(feld[merkxwert][merkywert].getWeissdameWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertWeiss==2 && kannspringen==false) {	//Bedingung um weissen Dame zu setzen
 				System.out.println("weisse dame setzen");
-				feld[xFeld][yFeld].setWeissDame(true);																						//durch die Dame die sich nun auf diesem Platz befindet
+				feld[xFeld][yFeld].setWeissDame(true);																												//durch die Dame die sich nun auf diesem Platz befindet
 				feld[xFeld][yFeld].setFeldhinbewegen(false);
 				feld[merkxwert][merkywert].setWeissdameWahl(false);
 				feld[merkxwert][merkywert].setLeerFeld(true);
-				wertWeiss=0;																												//beim bewegen ist der Zug beendet
-				wertSchwarz++;																												//schwarz kann als nächstes bewegt werden
+				wertWeiss=0;																																		//beim bewegen ist der Zug beendet
+				wertSchwarz++;																																		//schwarz kann als nächstes bewegt werden
 				vordefiniertEntfernen();
 				return;
-			}else if(wertWeiss==2 && feld[xFeld][yFeld].getFeldhinbewegen()==false && feld[merkxwert][merkywert].getWeissWahl()==true){		//Bedingung, falls man sich mit einer weissen Figur verklickt oder einen Stein nehmen möchte
-				feld[merkxwert][merkywert].setWeissWahl(false);																				//Setzt die Spielfigur in die ursprungssituation
+			}else if(wertWeiss==2 && feld[xFeld][yFeld].getFeldhinbewegen()==false && feld[merkxwert][merkywert].getWeissWahl()==true){								//Bedingung, falls man sich mit einer weissen Figur verklickt oder einen Stein nehmen möchte
+				feld[merkxwert][merkywert].setWeissWahl(false);																										//Setzt die Spielfigur in die ursprungssituation
 				feld[merkxwert][merkywert].setWeissSpieler(true);
 				wertWeiss=1;
 				vordefiniertEntfernen();
 				return;
-			}else if(wertWeiss==2 && feld[xFeld][yFeld].getFeldhinbewegen()==false && feld[merkxwert][merkywert].getWeissdameWahl()==true){	//Bedingung, falls man sich mit der weissen Dame verklickt oder einen Stein nehmen möchte
-				feld[merkxwert][merkywert].setWeissdameWahl(false);																			//Setzt die Spielfigur in die ursprungssituation
+			}else if(wertWeiss==2 && feld[xFeld][yFeld].getFeldhinbewegen()==false && feld[merkxwert][merkywert].getWeissdameWahl()==true){							//Bedingung, falls man sich mit der weissen Dame verklickt oder einen Stein nehmen möchte
+				feld[merkxwert][merkywert].setWeissdameWahl(false);																									//Setzt die Spielfigur in die ursprungssituation
 				feld[merkxwert][merkywert].setWeissDame(true);
 				wertWeiss=1;
 				vordefiniertEntfernen();
 				return;
 			}
 		
-			if(feld[merkxwert][merkywert].getSchwarzWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2 && kannspringen==false) {			//Bedingung um schwarzen Stein zu setzen
+			if(feld[merkxwert][merkywert].getSchwarzWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2 && kannspringen==false) {		//Bedingung um schwarzen Stein zu setzen
 				System.out.println("schwarzer stein setzen");
 				schwarzPlatzWechsel();
 				schwarzDamePruefen();
-				wertSchwarz=0;																													//schwarzer Zug wird beendet
+				wertSchwarz=0;																																		//schwarzer Zug wird beendet
 				wertWeiss++;	
 				return;
 			}else if(feld[merkxwert][merkywert].getSchwarzdameWahl()==true && feld[xFeld][yFeld].getFeldhinbewegen()==true && wertSchwarz==2 && kannspringen==false) {	//Bedingung um weissen Stein zu setzen
@@ -190,13 +192,13 @@ public class Regel extends Welt{
 				wertWeiss++;
 				vordefiniertEntfernen();
 				return;
-			}else if(wertSchwarz==2 && feld[xFeld][yFeld].getFeldhinbewegen()==false && feld[merkxwert][merkywert].getSchwarzWahl()==true){		//falls man sich mit der schwarzen Figur verklickt oder eine andere Figur lieber spielen möchte
+			}else if(wertSchwarz==2 && feld[xFeld][yFeld].getFeldhinbewegen()==false && feld[merkxwert][merkywert].getSchwarzWahl()==true){							//falls man sich mit der schwarzen Figur verklickt oder eine andere Figur lieber spielen möchte
 				feld[merkxwert][merkywert].setSchwarzWahl(false);
 				feld[merkxwert][merkywert].setSchwarzSpieler(true);
 				wertSchwarz=1;
 				vordefiniertEntfernen();
 				return;
-			}else if(wertSchwarz==2 && feld[xFeld][yFeld].getFeldhinbewegen()==false && feld[merkxwert][merkywert].getSchwarzdameWahl()==true){	//falls man sich mit der schwarzen Dame verklickt oder eine andere Figur lieber spielen möchte
+			}else if(wertSchwarz==2 && feld[xFeld][yFeld].getFeldhinbewegen()==false && feld[merkxwert][merkywert].getSchwarzdameWahl()==true){						//falls man sich mit der schwarzen Dame verklickt oder eine andere Figur lieber spielen möchte
 				feld[merkxwert][merkywert].setSchwarzdameWahl(false);
 				feld[merkxwert][merkywert].setSchwarzDame(true);
 				wertSchwarz=1;
@@ -206,11 +208,11 @@ public class Regel extends Welt{
 		}
 	}
 
-	public static void weissNehmen() {					//Methode für weissen Stein nehmen
+	public static void weissNehmen() {							//Methode für weissen Stein nehmen
 		System.out.println("weißer stein nehmen");
-		merkxwert=xFeld;								//der x-Wert wird gespeichert
-		merkywert=yFeld;								//der y-Wert wird gespeicht
-		wertWeiss++;									//wird auf 2 erhöht
+		merkxwert=xFeld;										//der x-Wert wird gespeichert
+		merkywert=yFeld;										//der y-Wert wird gespeicht
+		wertWeiss++;											//wird auf 2 erhöht
 	}
 	
 	public static void weissPlatzWechsel() {					//Methode, die den weissen Stein an die neue Position setzt und auf der alten Position den Stein entfernt
@@ -286,11 +288,11 @@ public class Regel extends Welt{
 	
 	
 	
-	public static void felderVorgabeOben() {																									//Prüft, die Felder, wo man mach oben gehen kann	
+	public static void felderVorgabeOben() {																																						//Prüft, die Felder, wo man mach oben gehen kann	
 		if(feld[xFeld][yFeld].getWeissWahl()==true||feld[xFeld][yFeld].getWeissdameWahl()==true) {
-			if((xFeld-2)>=0 &&(yFeld-2)>=0 && (feld[xFeld-1][yFeld-1].getSchwarzSpieler()==true||feld[xFeld-1][yFeld-1].getSchwarzDame()==true) && feld[xFeld-2][yFeld-2].getLeerFeld()==true) {		//prüft, ob man über einen Stein nach links oben springen kann
-				feld[xFeld-2][yFeld-2].setLeerFeld(false);																							//setzt das leere Feld auf
-				feld[xFeld-2][yFeld-2].setFeldhinbewegen(true);																						//das vordefinierte Feld
+			if((xFeld-2)>=0 &&(yFeld-2)>=0 && (feld[xFeld-1][yFeld-1].getSchwarzSpieler()==true||feld[xFeld-1][yFeld-1].getSchwarzDame()==true) && feld[xFeld-2][yFeld-2].getLeerFeld()==true) {	//prüft, ob man über einen Stein nach links oben springen kann
+				feld[xFeld-2][yFeld-2].setLeerFeld(false);																																			//setzt das leere Feld auf
+				feld[xFeld-2][yFeld-2].setFeldhinbewegen(true);																																		//das vordefinierte Feld
 			}
 			if((xFeld+2)<=7 && (yFeld-2)>=0 && (feld[xFeld+1][yFeld-1].getSchwarzSpieler()==true||feld[xFeld+1][yFeld-1].getSchwarzDame()==true) && feld[xFeld+2][yFeld-2].getLeerFeld()==true) {	//prüft, ob man über einen Stein nach rechts oben springen kann
 				feld[xFeld+2][yFeld-2].setLeerFeld(false);
@@ -298,10 +300,10 @@ public class Regel extends Welt{
 			}
 		}else if(feld[xFeld][yFeld].getSchwarzdameWahl()==true) {
 			if((xFeld-2)>=0 &&(yFeld-2)>=0 && (feld[xFeld-1][yFeld-1].getWeissSpieler()==true||feld[xFeld-1][yFeld-1].getWeissDame()==true) && feld[xFeld-2][yFeld-2].getLeerFeld()==true) {		//prüft, ob man über einen Stein nach links oben springen kann
-				feld[xFeld-2][yFeld-2].setLeerFeld(false);																							//setzt das leere Feld auf
-				feld[xFeld-2][yFeld-2].setFeldhinbewegen(true);																						//das vordefinierte Feld
+				feld[xFeld-2][yFeld-2].setLeerFeld(false);																																			//setzt das leere Feld auf
+				feld[xFeld-2][yFeld-2].setFeldhinbewegen(true);																																		//das vordefinierte Feld
 			}
-			if((xFeld+2)<=7 && (yFeld-2)>=0 && (feld[xFeld+1][yFeld-1].getWeissSpieler()==true||feld[xFeld+1][yFeld-1].getWeissDame()==true) && feld[xFeld+2][yFeld-2].getLeerFeld()==true) {	//prüft, ob man über einen Stein nach rechts oben springen kann
+			if((xFeld+2)<=7 && (yFeld-2)>=0 && (feld[xFeld+1][yFeld-1].getWeissSpieler()==true||feld[xFeld+1][yFeld-1].getWeissDame()==true) && feld[xFeld+2][yFeld-2].getLeerFeld()==true) {		//prüft, ob man über einen Stein nach rechts oben springen kann
 				feld[xFeld+2][yFeld-2].setLeerFeld(false);
 				feld[xFeld+2][yFeld-2].setFeldhinbewegen(true);
 			}

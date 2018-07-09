@@ -36,7 +36,7 @@ public class Bot extends Regel {
 
 
 		
-			if(xFeld<7 && feld[merkxwert][merkywert].getSchwarzWahl()==true && feld[xFeld + 1][yFeld + 1].getFeldhinbewegen()==true && wertSchwarz==2 && kannspringen==false) {			//Bedingung um schwarzen Stein zu setzen
+			if(xFeld<8 && feld[merkxwert][merkywert].getSchwarzWahl()==true && feld[xFeld + 1][yFeld + 1].getFeldhinbewegen()==true && wertSchwarz==2 && kannspringen==false) {			//Bedingung um schwarzen Stein zu setzen
 				System.out.println("schwarzer stein setzen");
 				feld[xFeld + 1][yFeld + 1].setFeldhinbewegen(false);
 				feld[xFeld + 1][yFeld + 1].setSchwarzSpieler(true);
