@@ -226,7 +226,7 @@ public class Highscore extends JFrame implements ActionListener{
 		}
 		
 		if(source.equals(beenden)) {
-			System.exit(0);
+			dispose();
 		}
 	}
 }
