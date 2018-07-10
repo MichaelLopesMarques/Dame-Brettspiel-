@@ -106,7 +106,7 @@ public class Start extends JFrame implements MouseListener, ActionListener{
 			
 		}
 		if(source.equals(tut)) {
-			new Gewonnen();
+			new Tutorial();
 		}
 		if(source.equals(end)) {
 			System.exit(0);						//Programm wird beendet
